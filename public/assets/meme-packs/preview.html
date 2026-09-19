@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MEME 弹幕包预览</title>
+  <style>
+    :root { color-scheme: dark; font-family: system-ui, sans-serif; background: #11152a; color: #f6f7ff; }
+    body { max-width: 1100px; margin: 0 auto; padding: 28px; }
+    h1 { margin: 0 0 8px; } .sub { color: #aeb7d8; margin-bottom: 24px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; }
+    article { overflow: hidden; border: 1px solid #303a68; border-radius: 18px; background: #1a2040; box-shadow: 0 12px 26px #080b1b66; }
+    img { display: block; width: 100%; height: 240px; object-fit: contain; background: #0c1024; }
+    .body { padding: 14px 16px 16px; } h2 { margin: 0 0 6px; font-size: 19px; }
+    .meta { color: #aeb7d8; font-size: 13px; margin-bottom: 10px; } audio { width: 100%; }
+  </style>
+</head>
+<body>
+  <h1 id="page-title">MEME 弹幕包预览 · 第一批 + 第二批 + 第三批 + 第四批 + 第五批</h1>
+  <div class="sub" id="page-subtitle">每张卡片是一张真实多帧 meme GIF + 一段对应原版音效；音频最长 5 秒。点击播放控件试听。</div>
+  <main class="grid" id="grid"></main>
+  <script>
+    // 内嵌清单，支持直接双击 file:// 预览；正式接入时仍以 manifest.json 为准。
+    const packs = [
+      ['impact-boom-01', 'Vine Boom · 震撼一击', 'impact', 1267],
+      ['deadpan-drop-01', 'BRUH · 冷脸下坠', 'reaction', 828],
+      ['party-horn-01', 'MLG Air Horn · 派对号角', 'celebration', 1513],
+      ['fail-buzzer-01', 'Sad Song · 失败', 'fail', 5000],
+      ['surprise-rise-01', 'What the Hell Boy · 等等什么', 'surprise', 784],
+      ['victory-fanfare-01', 'DaBaby Let\'s Go · 这波赢麻了', 'victory', 4283],
+      ['emotional-damage-02', 'Emotional Damage · 破防暴击', 'reaction', 2900],
+      ['bonk-doge-02', 'BONK · 狗头制裁', 'impact', 413],
+      ['coffin-dance-02', 'Coffin Dance · 棺材舞送走', 'fail', 5000],
+      ['gta-wasted-02', 'GTA Wasted · 当场寄', 'fail', 5000],
+      ['fbi-open-up-02', 'FBI Open Up · 破门突袭', 'surprise', 1829],
+      ['sad-violin-02', 'Sad Violin · 悲情拉满', 'reaction', 4519],
+      ['among-us-emergency-03', 'Among Us Emergency · 紧急会议', 'surprise', 3736],
+      ['why-running-03', 'Why Are You Running · 为什么要跑', 'reaction', 810],
+      ['cut-g-03', 'I Like Your Cut G · 这发型可以', 'impact', 2601],
+      ['trololo-03', 'Trololo · 魔性洗脑', 'reaction', 5000],
+      ['its-corn-03', 'It’s Corn · 玉米之歌', 'celebration', 5000],
+      ['happy-happy-03', 'Happy Happy Happy · 开心连击', 'celebration', 5000],
+      ['few-moments-later-04', 'A Few Moments Later · 过了一会儿', 'transition', 1933],
+      ['hello-there-04', 'Hello There · 老朋友登场', 'reaction', 984],
+      ['john-cena-04', 'John Cena Intro · 隐形登场', 'celebration', 5000],
+      ['mario-falling-04', 'Mario Oof · 坠落失误', 'fail', 2795],
+      ['just-kidding-04', 'Sike · 逗你玩的', 'reaction', 1200],
+      ['turtles-04', 'I Like Turtles · 我喜欢海龟', 'reaction', 1463],
+      ['crab-rave-05', 'Crab Rave · 螃蟹开趴', 'celebration', 5000],
+      ['crazy-frog-05', 'Crazy Frog · 蛙式乱入', 'celebration', 5000],
+      ['badum-tss-05', 'Ba Dum Tss · 笑点收尾', 'impact', 1881],
+      ['hog-rider-05', 'Hog Rider · 野猪冲锋', 'impact', 1724],
+      ['goofy-yell-05', 'Goofy Yell · 高飞怪叫', 'reaction', 2377],
+      ['kirby-falls-05', 'Kirby Falls · 卡比坠落', 'fail', 1067]
+    ].map(([id, name, category, durationMs]) => ({
+      id, name, category, durationMs,
+      image: `images/${id}-real.gif`,
+      audio: id === 'just-kidding-04'
+        ? 'audio/sike-04.wav'
+        : id === 'kirby-falls-05'
+          ? 'audio/kirby-falls-05-bili.mp3'
+          : `audio/${id}.mp3`
+    }));
+    // `?batch=2` / `?batch=3` / `?batch=4` / `?batch=5` 只展示对应批次，历史链接 `?source-gif=2` 仍指向第二批。
+    const query = new URLSearchParams(location.search);
+    const batch = query.get('batch') || (query.get('source-gif') === '2' ? '2' : '');
+    const batchRanges = { '2': [6, 12], '3': [12, 18], '4': [18, 24], '5': [24, 30] };
+    const range = batchRanges[batch];
+    const visiblePacks = range ? packs.slice(range[0], range[1]) : packs;
+    if (batch === '2' || batch === '3' || batch === '4' || batch === '5') {
+      document.querySelector('#page-title').textContent = `MEME 弹幕包预览 · 第${batch}批`;
+      document.querySelector('#page-subtitle').textContent = `第${batch}批 6 个真实多帧 meme GIF + 对应原版音效，音频最长 5 秒。点击播放控件试听。`;
+    }
+    const grid = document.querySelector('#grid');
+    for (const p of visiblePacks) {
+      const card = document.createElement('article');
+      card.innerHTML = `<img loading="lazy" src="${p.image}" alt="${p.name}"><div class="body"><h2>${p.name}</h2><div class="meta">${p.category} · ${p.durationMs} ms</div><audio controls preload="metadata" src="${p.audio}"></audio></div>`;
+      grid.append(card);
+    }
+  </script>
+</body>
+</html>
+
+

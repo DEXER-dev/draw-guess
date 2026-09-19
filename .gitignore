@@ -1,0 +1,29 @@
+# Installed dependencies
+node_modules/
+**/node_modules/
+
+# Runtime data and local logs
+cache/
+*.log
+.game-server.pid.json
+
+# Local tunnel helper
+cloudflared.exe
+
+# Separate typing prototype bundled in the workspace
+speed-typing/
+
+# Source-only and legacy meme material; the playable assets remain tracked
+public/assets/meme-packs/audio/_source-original/
+public/assets/meme-packs/images/_source-original/
+public/assets/meme-packs/audio/_legacy-original/
+public/assets/meme-packs/images/_legacy-original/
+public/assets/meme-packs/images/_legacy-derived-motion/
+
+# Local environment files
+.env
+.env.*
+!.env.example
+
+# Browser profile created while recording the promo video
+promo/edge-profile/

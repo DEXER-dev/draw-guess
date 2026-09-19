@@ -1,0 +1,446 @@
+{
+  "schemaVersion": 1,
+  "id": "palworld",
+  "name": "幻兽帕鲁词库",
+  "version": "1.0.0",
+  "locale": "zh-CN",
+  "description": "帕鲁、物品、建筑和地点",
+  "groups": [
+    {
+      "id": "all",
+      "category": "幻兽帕鲁",
+      "clue": "这是幻兽帕鲁里的帕鲁、物品、建筑或地点",
+      "difficulty": 2,
+      "drawability": 3,
+      "words": [
+        {
+          "id": "palworld-e7b2378130",
+          "word": "棉悠悠",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "palworld-58824b033e",
+          "word": "捣蛋猫",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "palworld-02d3a214e3",
+          "word": "皮皮鸡",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "palworld-b2a60c6cbf",
+          "word": "翠叶鼠",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "palworld-5221da5d6a",
+          "word": "火绒狐",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "palworld-81852038f0",
+          "word": "冲浪鸭",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "palworld-21c0f01783",
+          "word": "伏特喵",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "palworld-329637b912",
+          "word": "新叶猿",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "palworld-9ecf9a07fd",
+          "word": "燎火鹿",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "palworld-34f3eabdeb",
+          "word": "紫霞鹿",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "palworld-c27df5f892",
+          "word": "疾旋鼬",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "palworld-bc8687a58d",
+          "word": "瞅什魔",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "palworld-d6d21142aa",
+          "word": "壶小象",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "palworld-4e27f79c6b",
+          "word": "米露菲",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "palworld-f15babea79",
+          "word": "寐魔",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "palworld-e341db7292",
+          "word": "棉球仔",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "palworld-b1cb922158",
+          "word": "荆棘魔仙",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "palworld-1baee527f1",
+          "word": "夜幕魔蝠",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "palworld-9b5a6a8d46",
+          "word": "噬魂兽",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "palworld-a6eabf6d5e",
+          "word": "佩克龙",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "palworld-63489fbcfd",
+          "word": "雷角马",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "palworld-2c8c4394ef",
+          "word": "花冠龙",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "palworld-3f34babb69",
+          "word": "羽箭射手",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "palworld-e4b6d16986",
+          "word": "阿努比斯",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "palworld-94e1c4e986",
+          "word": "天羽龙",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "palworld-0283fdd93d",
+          "word": "云海鹿",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "palworld-cd2dd55bb3",
+          "word": "踏春兔",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "palworld-34175d417d",
+          "word": "波霸兔",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "palworld-f85e343eaa",
+          "word": "勾魂鱿",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "palworld-b438a4ef04",
+          "word": "骑士蜂",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "palworld-3e682e0517",
+          "word": "女皇蜂",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "palworld-130f3464a1",
+          "word": "博爱蜥",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "palworld-48a8cfc925",
+          "word": "碎岩龟",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "palworld-9fcee17b10",
+          "word": "遁地鼠",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "palworld-38030631b9",
+          "word": "叶泥泥",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "palworld-c3888873d7",
+          "word": "水灵儿",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "palworld-943fcd11db",
+          "word": "火灵儿",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "palworld-a50f0421ea",
+          "word": "连理龙",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "palworld-5c9de2d6ea",
+          "word": "碧海龙",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "palworld-0dad4d7be1",
+          "word": "狱阎王",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "palworld-519899688f",
+          "word": "狱焰王",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "palworld-52f51cdf48",
+          "word": "空涡龙",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "palworld-d2eb9504cc",
+          "word": "混沌骑士",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "palworld-7e9742bb1c",
+          "word": "圣天骑士",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "palworld-86241b5ffa",
+          "word": "唤夜兽",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "palworld-1c8f8695f0",
+          "word": "唤冬兽",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "palworld-129d5c1b79",
+          "word": "覆海龙",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "palworld-64e1ee72ce",
+          "word": "腾炎龙",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "palworld-56e1a96239",
+          "word": "帕鲁球",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "palworld-e93a09f0c5",
+          "word": "帕鲁终端",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "palworld-d07e3119b2",
+          "word": "配种牧场",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "palworld-393161b4f8",
+          "word": "孵化器",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "palworld-8483cd2b08",
+          "word": "工作台",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "palworld-9213b34824",
+          "word": "滑翔伞",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "palworld-b309318ca2",
+          "word": "据点",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "palworld-cf18bc4f55",
+          "word": "伐木场",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "palworld-27b09333e9",
+          "word": "采石场",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "palworld-072b496452",
+          "word": "饲料",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "palworld-bf85971dbf",
+          "word": "技能果实",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "palworld-2177a4a302",
+          "word": "地下城",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "palworld-e3687653f1",
+          "word": "宝箱",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        }
+      ]
+    }
+  ]
+}

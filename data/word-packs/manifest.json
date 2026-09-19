@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "packs": [
+    {
+      "id": "lol",
+      "file": "lol.json",
+      "enabledByDefault": false
+    },
+    {
+      "id": "palworld",
+      "file": "palworld.json",
+      "enabledByDefault": false
+    }
+  ]
+}

@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#4f46e5">
+  <link rel="icon" href="data:,">
+  <title>你画我猜 · 扫码即玩</title>
+    <link rel="stylesheet" href="/style.css?v=20260913-meme-batch5-v46">
+</head>
+<body>
+  <div id="app">
+    <header class="topbar hidden" id="topbar">
+      <div class="top-left">
+        <div class="brand">🎨 你画我猜</div>
+        <div class="conn" id="connState">未连接</div>
+      </div>
+      <div class="top-center">
+        <div class="room-code" id="topRoomCode">房间码 ----</div>
+        <div id="phaseText">准备中</div>
+        <div class="timer" id="timerText">--</div>
+      </div>
+      <div class="top-right">
+        <div class="round" id="roundText"></div>
+        <div class="word" id="wordText"></div>
+      </div>
+    </header>
+
+    <!-- 首页 -->
+    <main id="screen-home" class="screen">
+      <div class="card home-card">
+        <h1>你画我猜</h1>
+        <p class="subtitle">无需安装 APP · 扫码或点链接直接加入 · 手机 PC 同玩</p>
+        <label class="field-label" for="nicknameInput">你的昵称</label>
+        <input id="nicknameInput" maxlength="12" placeholder="例如：小明" autocomplete="off">
+        <div class="join-row">
+          <input id="roomCodeInput" maxlength="8" placeholder="输入 4-8 位房间码" autocomplete="off">
+          <button id="joinBtn" class="btn primary">加入</button>
+        </div>
+        <div class="join-row">
+          <input id="customCodeInput" maxlength="8" placeholder="自定义房间号（可选，4-8位字母数字）" autocomplete="off">
+          <button id="createBtn" class="btn primary">创建房间</button>
+        </div>
+        <button id="homePenSkinBtn" class="btn pen-skin-open-btn" type="button">🖊️ 笔皮肤 / 抽卡</button>
+        <p class="small-tip" id="homeTip"></p>
+        <div class="room-list-section">
+          <h3>🟢 在线房间</h3>
+          <ul id="roomList" class="room-list"></ul>
+          <p class="small-tip" id="roomListEmpty">暂无可用房间，创建一个吧</p>
+        </div>
+      </div>
+    </main>
+
+    <!-- 大厅 -->
+    <main id="screen-lobby" class="screen hidden">
+      <div class="card lobby-card">
+        <div class="lobby-left">
+          <h2>房间 <span class="code" id="lobbyCode">------</span></h2>
+          <div class="qr-box">
+            <img id="qrImg" alt="房间二维码">
+          </div>
+          <p class="qr-tip">手机扫码或点击链接，即可用浏览器加入，无需安装</p>
+          <div class="share-row">
+            <input id="shareInput" readonly>
+            <button id="copyBtn" class="btn">复制</button>
+            <button id="shareBtn" class="btn">分享</button>
+          </div>
+        </div>
+        <div class="lobby-right">
+          <h3>玩家 <span id="playerCount">1</span>/12</h3>
+          <ul id="playerList" class="player-list"></ul>
+          <div id="hostPanel" class="host-panel hidden">
+            <h3>房间设置</h3>
+            <label>完整轮数（每轮每人画一次）
+              <select id="roundsSelect">
+                <option value="1">1 轮</option>
+                <option value="2">2 轮</option>
+                <option value="3" selected>3 轮</option>
+                <option value="4">4 轮</option>
+                <option value="5">5 轮</option>
+                <option value="6">6 轮</option>
+              </select>
+            </label>
+            <label>每轮秒数
+              <select id="secondsSelect">
+                <option value="30">30 秒</option>
+                <option value="60" selected>60 秒</option>
+                <option value="80">80 秒</option>
+                <option value="100">100 秒</option>
+                <option value="120">120 秒</option>
+              </select>
+            </label>
+            <label>选词方式
+              <select id="wordModeSelect">
+                <option value="choice" selected>画手 3 选 1</option>
+                <option value="random">系统随机出题</option>
+              </select>
+            </label>
+            <label>游戏模式
+              <select id="gameModeSelect">
+                <option value="classic" selected>经典你画我猜</option>
+                <option value="relay">传画接龙</option>
+              </select>
+            </label>
+            <div id="relaySettings" class="hidden">
+              <label>接龙棒数
+                <select id="relayPassesSelect">
+                  <option value="3">3 棒</option>
+                  <option value="4" selected>4 棒</option>
+                  <option value="5">5 棒</option>
+                </select>
+              </label>
+              <label>猜词秒数
+                <select id="guessSecondsSelect">
+                  <option value="15">15 秒</option>
+                  <option value="30" selected>30 秒</option>
+                  <option value="45">45 秒</option>
+                  <option value="60">60 秒</option>
+                </select>
+              </label>
+            </div>
+            <details class="word-bank-panel">
+              <summary>📚 词库管理</summary>
+              <div class="word-bank-body">
+                <h4>内置词库开关</h4>
+                <label class="check-label">
+                  <input type="checkbox" id="basicPackCheck" checked> 基础词库（中等固定词 / 短语 / 成语 / 热梗）
+                </label>
+                <label class="check-label">
+                  <input type="checkbox" id="lolPackCheck"> 英雄联盟词库
+                </label>
+                <label class="check-label">
+                  <input type="checkbox" id="palworldPackCheck"> 幻兽帕鲁词库
+                </label>
+                <h4>自定义词库</h4>
+                <label class="block-label" for="customWordsInput">每行一个词；可加提示：词语|提示</label>
+                <textarea id="customWordsInput" rows="3" maxlength="4000" placeholder="例如：&#10;奥特曼|打怪兽的巨人&#10;榴莲|一种有气味的水果&#10;直升机"></textarea>
+                <label class="check-label">
+                  <input type="checkbox" id="customOnlyCheck"> 只使用自定义词库
+                </label>
+                <button id="saveWordBankBtn" class="btn">保存词库设置</button>
+              </div>
+            </details>
+            <button id="startBtn" class="btn primary big">开始游戏</button>
+          </div>
+          <div id="guestHint" class="guest-hint">等待房主开始游戏…</div>
+          <button id="lobbyPenSkinBtn" class="btn pen-skin-open-btn" type="button">🖊️ 笔皮肤 / 抽卡</button>
+          <button id="leaveBtn" class="btn danger">离开房间</button>
+        </div>
+      </div>
+    </main>
+
+    <!-- 游戏 -->
+    <main id="screen-game" class="screen hidden">
+      <div class="game-layout">
+        <div class="board-column">
+          <div class="board-meta">
+            <div id="drawerLabel">画手：--</div>
+            <div id="privateWordBox" class="private-word hidden"></div>
+            <div id="guessedBox" class="guessed-box hidden">✅ 你已猜中</div>
+            <button id="bulletToggle" class="bullet-toggle" type="button">弹幕：开</button>
+            <button id="gamePenSkinBtn" class="game-pen-skin-btn" type="button">🖊️ 抽笔</button>
+          </div>
+          <div id="drawOrderText" class="draw-order hidden"></div>
+          <div id="wordBanner" class="word-banner">--</div>
+          <div id="hintLine" class="hint-line"></div>
+          <div class="canvas-wrap">
+            <canvas id="board" width="600" height="600"></canvas>
+            <div id="penCursor" class="pen-cursor hidden" aria-hidden="true">
+              <img id="penCursorImage" alt="当前笔皮肤">
+            </div>
+            <div id="remotePenCursor" class="pen-cursor remote-pen-cursor hidden" aria-hidden="true">
+              <img id="remotePenCursorImage" alt="画手笔皮肤">
+            </div>
+            <div id="penEffectLayer" class="pen-effect-layer" aria-hidden="true"></div>
+            <div id="bulletLayer" class="bullet-layer"></div>
+            <div id="memePackLayer" class="meme-pack-layer" aria-live="polite"></div>
+            <div id="fxLayer" class="fx-layer"></div>
+            <div id="burstLayer" class="burst-layer"></div>
+            <div class="canvas-overlay hidden" id="canvasOverlay"></div>
+          </div>
+          <form id="quickChatForm" class="quick-chat" autocomplete="off">
+            <input id="quickChatInput" maxlength="60" placeholder="快速聊天 / 猜答案…" autocomplete="off" enterkeyhint="send">
+            <button class="btn primary" type="submit">发送</button>
+          </form>
+          <button id="mobileToolToggle" class="mobile-tool-toggle hidden" type="button" aria-expanded="true" aria-controls="drawerTools">🎨 工具</button>
+          <div id="drawerTools" class="toolbar hidden">
+            <div class="tool-group" id="toolTools"></div>
+            <div class="tool-group" id="colorTools"></div>
+            <div class="tool-group" id="sizeTools"></div>
+            <div class="tool-group">
+              <button class="tool-btn" id="undoBtn" title="撤销">↩ 撤销</button>
+              <button class="tool-btn" id="clearBtn" title="清空">🗑 清空</button>
+            </div>
+          </div>
+          <div id="watcherHint" class="watcher-hint hidden">👀 等待画手作画，请在右侧输入答案</div>
+        </div>
+
+        <aside class="side-panel">
+          <div class="tabs">
+            <button class="tab active" data-tab="chat">聊天 / 猜词</button>
+            <button class="tab" data-tab="players">玩家</button>
+            <button class="tab" data-tab="music">🎵 音乐</button>
+          </div>
+          <div class="chat-list" id="chatList"></div>
+          <ul class="player-list hidden" id="playerListGame"></ul>
+          <div id="musicPanel" class="music-panel hidden">
+            <div class="music-now">
+              <div class="music-now-label">本机正在播放</div>
+              <div id="nowPlaying" class="music-now-song">本机未播放</div>
+              <div id="musicRoomNow" class="music-room-now">房间暂未开始播放</div>
+              <div id="musicPlaybackStatus" class="music-playback-status" data-state="idle">本机未播放</div>
+              <button id="musicEnableBtn" class="btn primary hidden" type="button">🔊 点击启用音乐</button>
+            </div>
+            <div class="music-volume">
+              <span class="music-volume-icon">🔊</span>
+              <input id="musicVolume" type="range" min="0" max="1" step="0.05" value="1" aria-label="音量">
+              <span class="music-volume-label" id="musicVolumeLabel">100%</span>
+            </div>
+            <button id="lyricsFloatToggle" class="btn" type="button">歌词外显：关</button>
+            <div id="musicLyrics" class="music-lyrics">
+              <div class="music-lyrics-line muted">暂无歌词</div>
+            </div>
+            <div class="music-queue">
+              <div class="music-queue-title">点歌队列</div>
+              <ul id="musicQueueList" class="music-queue-list"></ul>
+            </div>
+            <div class="music-hint" id="musicHint">🎵 点歌进入全房队列 · 播放结束后自动移出 · 切歌只影响本机</div>
+            <div class="music-source-tabs">
+              <button class="music-source-btn active" data-source="netease" type="button">网易云</button>
+              <button class="music-source-btn" data-source="gd" type="button">GD音乐台</button>
+              <button class="music-source-btn" data-source="bili" type="button">B站 BV</button>
+            </div>
+            <div id="neteasePoint" class="netease-point">
+              <div class="netease-point-title">☁️ 网易云音乐搜索</div>
+              <div class="netease-input-row">
+                <input id="neteaseInput" maxlength="60" placeholder="输入歌名 / 歌手" autocomplete="off">
+                <button id="neteaseSearchBtn" class="btn" type="button">搜索</button>
+              </div>
+              <div id="neteaseResults" class="netease-results"></div>
+            </div>
+            <div id="gdPoint" class="gd-point hidden">
+              <div class="gd-point-title">🎧 GD音乐台搜索</div>
+              <div class="gd-input-row">
+                <input id="gdInput" maxlength="60" placeholder="输入歌名 / 歌手" autocomplete="off">
+                <button id="gdSearchBtn" class="btn" type="button">搜索</button>
+              </div>
+              <div id="gdResults" class="gd-results"></div>
+            </div>
+            <div id="biliPoint" class="bili-point hidden">
+              <div class="bili-point-title">🎬 B站 BV 号点歌</div>
+              <div class="bili-input-row">
+                <input id="biliInput" maxlength="20" placeholder="输入 BV 号，如 BV1xx411c7mD" autocomplete="off">
+                <button id="biliResolveBtn" class="btn" type="button">解析</button>
+              </div>
+              <div id="biliPreview"></div>
+            </div>
+            <div class="music-local-ops hidden" id="musicLocalOps">
+              <button id="musicSkipBtn" class="btn" type="button">⏭ 本机下一首</button>
+              <button id="musicStopBtn" class="btn danger" type="button">⏹ 本机停止</button>
+            </div>
+          </div>
+          <div class="throw-row">
+            <button class="throw-btn veg" id="vegThrowBtn" type="button">🥦 丢蔬菜</button>
+            <button class="throw-btn flower" id="flowerThrowBtn" type="button">🌸 送鲜花</button>
+            <button class="throw-btn poop" id="poopThrowBtn" type="button">💩 丢大便</button>
+          </div>
+          <div class="meme-pack-controls">
+            <button class="throw-btn meme" id="memePackToggle" type="button" aria-expanded="false">🎞 音频表情包</button>
+            <div id="memePackMenu" class="meme-pack-menu hidden" role="menu"></div>
+          </div>
+          <form id="chatForm" class="chat-form">
+            <input id="chatInput" maxlength="60" placeholder="输入答案或聊天…" autocomplete="off" enterkeyhint="send">
+            <button class="btn primary" id="sendBtn" type="submit">发送</button>
+          </form>
+        </aside>
+      </div>
+    </main>
+  </div>
+
+  <div id="floatLyrics" class="float-lyrics hidden">
+    <div class="float-lyrics-text" id="floatLyricsText">暂无歌词</div>
+  </div>
+
+  <div id="overlay" class="overlay hidden">
+    <div class="overlay-card">
+      <div id="overlayContent"></div>
+    </div>
+  </div>
+  <div id="legendaryAnnouncement" class="legendary-announcement hidden" role="status" aria-live="polite" aria-atomic="true">
+    <div class="legendary-announcement-card">
+      <div class="legendary-announcement-art">
+        <img id="legendaryAnnouncementImage" alt="传说笔皮肤">
+      </div>
+      <div class="legendary-announcement-copy">
+        <div class="legendary-announcement-kicker">✦ 全房间传说播报 ✦</div>
+        <p id="legendaryAnnouncementPlayer" class="legendary-announcement-player"></p>
+        <h2 id="legendaryAnnouncementTitle">传说笔皮肤</h2>
+        <div id="legendaryAnnouncementSkin" class="legendary-announcement-skin"></div>
+        <div class="legendary-announcement-rarity">传说 · 全房间可见</div>
+      </div>
+      <div class="legendary-announcement-sheen" aria-hidden="true"></div>
+    </div>
+  </div>
+  <div id="gachaGrantAnnouncement" class="gacha-grant-announcement hidden" role="status" aria-live="polite" aria-atomic="true">
+    <div class="gacha-grant-announcement-card">
+      <div class="gacha-grant-announcement-icon" aria-hidden="true">🎁</div>
+      <div class="gacha-grant-announcement-copy">
+        <div id="gachaGrantAnnouncementKicker" class="gacha-grant-announcement-kicker">✦ 本局福利弹幕 ✦</div>
+        <div id="gachaGrantAnnouncementMessage" class="gacha-grant-announcement-message">本局福利已发放</div>
+        <div id="gachaGrantAnnouncementMeta" class="gacha-grant-announcement-meta">当前在线玩家可领取</div>
+      </div>
+      <div class="gacha-grant-announcement-sheen" aria-hidden="true"></div>
+    </div>
+  </div>
+  <div id="toasts" class="toasts"></div>
+
+  <script src="/app.js?v=20260916-legendary-announce-v48"></script>
+</body>
+</html>

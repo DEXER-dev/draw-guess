@@ -1,0 +1,1936 @@
+{
+  "schemaVersion": 1,
+  "id": "lol",
+  "name": "英雄联盟词库",
+  "version": "1.0.0",
+  "locale": "zh-CN",
+  "description": "英雄、装备、地图和玩法",
+  "groups": [
+    {
+      "id": "all",
+      "category": "英雄联盟",
+      "clue": "这是英雄联盟里的英雄、装备、地图元素或玩法",
+      "difficulty": 2,
+      "drawability": 3,
+      "words": [
+        {
+          "id": "lol-c1fbe34dec",
+          "word": "亚索",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-4f41d7c4bb",
+          "word": "盲僧",
+          "aliases": [
+            "李青",
+            "lee sin"
+          ],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-07654e611b",
+          "word": "提莫",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-36f44e7d9d",
+          "word": "盖伦",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-b036c43f8f",
+          "word": "金克丝",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-b3775fbd9a",
+          "word": "拉克丝",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-7d4cfcee29",
+          "word": "阿狸",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-2ffdfea7a7",
+          "word": "锐雯",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-d03b590080",
+          "word": "德莱文",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-40e301a675",
+          "word": "薇恩",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-ccce77574b",
+          "word": "伊泽瑞尔",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-c2b548a455",
+          "word": "劫",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-3619dd7850",
+          "word": "剑圣",
+          "aliases": [
+            "易",
+            "易大师"
+          ],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-e036b75dfd",
+          "word": "石头人",
+          "aliases": [
+            "墨菲特"
+          ],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-df3f9d38d7",
+          "word": "机器人",
+          "aliases": [
+            "布里茨"
+          ],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-7c7c2488da",
+          "word": "安妮",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-08b8d74bb8",
+          "word": "艾希",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-9a728d901c",
+          "word": "蛮王",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-98fcf7ed9e",
+          "word": "瑞兹",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-91b7735c30",
+          "word": "卡牌",
+          "aliases": [
+            "崔斯特"
+          ],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-bc4efa6e94",
+          "word": "赵信",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-22876cfdd7",
+          "word": "皇子",
+          "aliases": [
+            "嘉文四世"
+          ],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-2d81325f09",
+          "word": "女警",
+          "aliases": [
+            "凯特琳"
+          ],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-deeb775a74",
+          "word": "锤石",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-e48f041881",
+          "word": "风女",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-60b18f4fd3",
+          "word": "索拉卡",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-57971d6856",
+          "word": "发条",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-63ff952773",
+          "word": "小鱼人",
+          "aliases": [
+            "菲兹"
+          ],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-c6293326be",
+          "word": "皎月",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-ef76443ada",
+          "word": "螳螂",
+          "aliases": [
+            "卡兹克"
+          ],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-c4356f61aa",
+          "word": "狮子狗",
+          "aliases": [
+            "雷恩加尔"
+          ],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-6ef8f7f505",
+          "word": "大树",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-2c06cc81ed",
+          "word": "酒桶",
+          "aliases": [
+            "古拉加斯"
+          ],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-36cfa51f47",
+          "word": "男枪",
+          "aliases": [
+            "格雷福斯"
+          ],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-2532f95643",
+          "word": "船长",
+          "aliases": [
+            "普朗克"
+          ],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-0752e946a5",
+          "word": "兰博",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-93cb24b328",
+          "word": "潘森",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-eaa96687ad",
+          "word": "泰坦",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-744f257697",
+          "word": "莫甘娜",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-765e2e0baf",
+          "word": "凯南",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-5e872796a3",
+          "word": "阿卡丽",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-c5fb9449d3",
+          "word": "塞拉斯",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-46810a11aa",
+          "word": "永恩",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-8ddda61633",
+          "word": "召唤师峡谷",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-97be8e3590",
+          "word": "防御塔",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-5cf18ac7a2",
+          "word": "水晶",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-8a0012b13a",
+          "word": "泉水",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-ed052f38a0",
+          "word": "纳什男爵",
+          "aliases": [
+            "大龙"
+          ],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-6570f9ec1b",
+          "word": "远古巨龙",
+          "aliases": [
+            "远古龙",
+            "小龙"
+          ],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-bea7ff847f",
+          "word": "峡谷先锋",
+          "aliases": [
+            "先锋"
+          ],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-ada10cd79e",
+          "word": "红buff",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-e19bf038bf",
+          "word": "蓝buff",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-31f6a4880d",
+          "word": "闪现",
+          "aliases": [
+            "flash"
+          ],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-ef87d2d91b",
+          "word": "点燃",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-1fdc48e668",
+          "word": "惩戒",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-c0343bc111",
+          "word": "传送",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-7d81885ccd",
+          "word": "治疗",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-5647ef90d9",
+          "word": "无尽之刃",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-617f508b85",
+          "word": "三相之力",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-f398a77d58",
+          "word": "卢登",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-e5089f38e4",
+          "word": "多兰剑",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-d1ffdca8f1",
+          "word": "五杀",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-c3d9345de3",
+          "word": "诺手",
+          "aliases": [
+            "德莱厄斯"
+          ],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-0bc4274cb6",
+          "word": "剑姬",
+          "aliases": [
+            "菲奥娜"
+          ],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-2bc606d5f8",
+          "word": "武器大师",
+          "aliases": [
+            "贾克斯",
+            "武器"
+          ],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-d1a488e247",
+          "word": "雷克顿",
+          "aliases": [
+            "鳄鱼"
+          ],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-4766746537",
+          "word": "狗头",
+          "aliases": [
+            "内瑟斯"
+          ],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-abc7f09647",
+          "word": "铁男",
+          "aliases": [
+            "莫德凯撒"
+          ],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-648fa74dc0",
+          "word": "青钢影",
+          "aliases": [
+            "卡蜜尔"
+          ],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-d32aae8ad0",
+          "word": "杰斯",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-411a1ffe75",
+          "word": "俄洛伊",
+          "aliases": [
+            "章鱼妈"
+          ],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-81368dfe6b",
+          "word": "蜘蛛",
+          "aliases": [
+            "伊莉丝"
+          ],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-214592fc44",
+          "word": "豹女",
+          "aliases": [
+            "奈德丽"
+          ],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-d64869b127",
+          "word": "猪妹",
+          "aliases": [
+            "瑟庄妮"
+          ],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-dc07ea99d1",
+          "word": "奥拉夫",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-bfe41b803f",
+          "word": "人马",
+          "aliases": [
+            "赫卡里姆"
+          ],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-6d017c3632",
+          "word": "稻草人",
+          "aliases": [
+            "费德提克"
+          ],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-85140b09d1",
+          "word": "阿木木",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-b023561701",
+          "word": "千珏",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-83414cf795",
+          "word": "卡特琳娜",
+          "aliases": [
+            "卡特"
+          ],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-c8d7cab45a",
+          "word": "维克托",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-b383563ada",
+          "word": "辛德拉",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-bcf953932c",
+          "word": "沙皇",
+          "aliases": [
+            "阿兹尔"
+          ],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-7bb93b8fc0",
+          "word": "卡萨丁",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-f6ccc1e0b9",
+          "word": "马尔扎哈",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-92ca84fdc6",
+          "word": "炸弹人",
+          "aliases": [
+            "吉格斯"
+          ],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-7084c738e6",
+          "word": "泽拉斯",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-db28e06e83",
+          "word": "小法",
+          "aliases": [
+            "维迦"
+          ],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-d449204acf",
+          "word": "卢锡安",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-3723958efc",
+          "word": "赛娜",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-86587697fd",
+          "word": "卡莎",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-44897c15ed",
+          "word": "老鼠",
+          "aliases": [
+            "图奇"
+          ],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-ac91523c17",
+          "word": "小炮",
+          "aliases": [
+            "崔丝塔娜"
+          ],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-c1b9d161bf",
+          "word": "大嘴",
+          "aliases": [
+            "克格莫"
+          ],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-036db1d5dc",
+          "word": "女枪",
+          "aliases": [
+            "厄运小姐"
+          ],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-ea9448afec",
+          "word": "卡莉丝塔",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-44ee3823ec",
+          "word": "烬",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-37a8d6cbaa",
+          "word": "韦鲁斯",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-c3e6a69ec0",
+          "word": "布隆",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-b119bb6076",
+          "word": "牛头",
+          "aliases": [
+            "阿利斯塔"
+          ],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-c0019aa68d",
+          "word": "日女",
+          "aliases": [
+            "蕾欧娜"
+          ],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-2c5cb204eb",
+          "word": "璐璐",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-1c235f9ac3",
+          "word": "塔姆",
+          "aliases": [
+            "河流之王"
+          ],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-c832837ec1",
+          "word": "巴德",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-56a76020ba",
+          "word": "娑娜",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-2188c87fec",
+          "word": "加里奥",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-47e7d0365e",
+          "word": "妮蔻",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-8ad9d66353",
+          "word": "佐伊",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-3e55d825da",
+          "word": "狗熊",
+          "aliases": [
+            "沃利贝尔"
+          ],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-42f03a0ef8",
+          "word": "厄加特",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-1b8c7200b3",
+          "word": "吸血鬼",
+          "aliases": [
+            "弗拉基米尔"
+          ],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-036d18974e",
+          "word": "梦魇",
+          "aliases": [
+            "魔腾"
+          ],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-d82d997cac",
+          "word": "丽桑卓",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-e429a56546",
+          "word": "火男",
+          "aliases": [
+            "布兰德"
+          ],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-844345549e",
+          "word": "冰鸟",
+          "aliases": [
+            "艾尼维亚"
+          ],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-d72df95204",
+          "word": "凯尔",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-fa4e41ace5",
+          "word": "剑魔",
+          "aliases": [
+            "亚托克斯"
+          ],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-2ea6304e35",
+          "word": "克烈",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-8db6463c4e",
+          "word": "波比",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-f003fca8f9",
+          "word": "暮光之眼",
+          "aliases": [
+            "慎"
+          ],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-c88a371c66",
+          "word": "凯隐",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-55912d0b52",
+          "word": "艾克",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-0bedb7c867",
+          "word": "雷克塞",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-b11cdf1f56",
+          "word": "扎克",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-ee288d0fb2",
+          "word": "寡妇",
+          "aliases": [
+            "伊芙琳"
+          ],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-38262b12ad",
+          "word": "男刀",
+          "aliases": [
+            "泰隆"
+          ],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-fc507892cf",
+          "word": "蛇女",
+          "aliases": [
+            "卡西奥佩娅"
+          ],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-5c1a3c589a",
+          "word": "大头",
+          "aliases": [
+            "黑默丁格"
+          ],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-45b435a34a",
+          "word": "龙王",
+          "aliases": [
+            "奥瑞利安索尔",
+            "奥瑞利安·索尔"
+          ],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-8696609745",
+          "word": "乌迪尔",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-b86661035d",
+          "word": "塔莉垭",
+          "aliases": [
+            "岩雀"
+          ],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-1c00d145e0",
+          "word": "艾翁",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-7fd6076ee1",
+          "word": "莉莉娅",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-e27457f650",
+          "word": "斯维因",
+          "aliases": [
+            "乌鸦"
+          ],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-f2ba71a9bf",
+          "word": "厄斐琉斯",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-b3842e7f7c",
+          "word": "莎弥拉",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-58dc3a1af1",
+          "word": "泽丽",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-398bb6e789",
+          "word": "娜美",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-ace51511e7",
+          "word": "派克",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-5ac3ba7eae",
+          "word": "悠米",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-92e5dcd954",
+          "word": "宝石",
+          "aliases": [
+            "塔里克"
+          ],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-597dec14a5",
+          "word": "芮尔",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-dff3d21991",
+          "word": "卡尔玛",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-917585baa2",
+          "word": "婕拉",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-755032f606",
+          "word": "奇亚娜",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-d9e3783c0c",
+          "word": "基兰",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-0fe1c816db",
+          "word": "河道蟹",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-ab3317ea4e",
+          "word": "元素龙",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-faab5428fb",
+          "word": "龙魂",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-9d69ebf03f",
+          "word": "小兵",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-f275c13937",
+          "word": "炮车兵",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-6df6a720c5",
+          "word": "超级兵",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-d6c01b6a42",
+          "word": "高地塔",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-d67086cc40",
+          "word": "门牙塔",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-066dd086c5",
+          "word": "高地水晶",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-fed1f4305c",
+          "word": "龙坑",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-6bd7a4ef8b",
+          "word": "草丛",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-70fd4399f9",
+          "word": "真眼",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-998c936377",
+          "word": "扫描",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-75d82e9b2b",
+          "word": "回城",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-eca6612780",
+          "word": "补刀",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-c41956053a",
+          "word": "推线",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-6e7ad99fad",
+          "word": "游走",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-2f5012d526",
+          "word": "反野",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-b7d03d30de",
+          "word": "团战",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-24795f9903",
+          "word": "超神",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-443c4a439a",
+          "word": "四杀",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-1d213f1e25",
+          "word": "三杀",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-c25a50ab4c",
+          "word": "一血",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-41d1121593",
+          "word": "助攻",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-f12b439ff0",
+          "word": "屏障",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-499ee3efba",
+          "word": "净化",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-8e25e0de4f",
+          "word": "虚弱",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-4373f8edce",
+          "word": "电刑",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-0fe5f25dd2",
+          "word": "征服者",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-fa6ea5ce9e",
+          "word": "不灭之握",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-4efa99854a",
+          "word": "符文页",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-e73068cad3",
+          "word": "石甲虫",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-0865631110",
+          "word": "三狼",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-ea04c7795c",
+          "word": "魔沼蛙",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-2b72b14a0d",
+          "word": "锋喙鸟",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-3cd7ec095d",
+          "word": "红石像",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-7d618f655b",
+          "word": "蓝石像",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-a22c930789",
+          "word": "爆炸果实",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-2976c143d3",
+          "word": "占卜花朵",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-9c94e8d567",
+          "word": "蜜糖果实",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-0aa0367a30",
+          "word": "兵线",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-f6316db07e",
+          "word": "换线",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-338d889fc4",
+          "word": "越塔",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-5cf9e3bba9",
+          "word": "支援",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-3566aa7224",
+          "word": "开团",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-c29e9db4b3",
+          "word": "反开",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-9634c6ebef",
+          "word": "秒杀",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-46aa8b6854",
+          "word": "双杀",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-9e661cad08",
+          "word": "终结",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-86f46384a1",
+          "word": "连杀",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-3343134f8e",
+          "word": "镀层",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-486512ab8d",
+          "word": "水晶枢纽",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-86cba98055",
+          "word": "基地水晶",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-4aad070d81",
+          "word": "防御塔镀层",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-a7774c3078",
+          "word": "远程兵",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-c98ce2ab03",
+          "word": "近战兵",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-603d8ded95",
+          "word": "红方基地",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-1aaeacc955",
+          "word": "蓝方基地",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-6d8d12f8c4",
+          "word": "强攻",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-1d87b48dae",
+          "word": "致命节奏",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-77629df29f",
+          "word": "迅捷步法",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-d6159a66b8",
+          "word": "相位猛冲",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-f902d7083f",
+          "word": "余震",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-5529a77a11",
+          "word": "艾黎",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-a5d9bb9882",
+          "word": "饮血剑",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-dcbcbf515f",
+          "word": "破败",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-de7b80dea1",
+          "word": "复活甲",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-ee0f0aade8",
+          "word": "金身",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-ccb91787c8",
+          "word": "水银鞋",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-4eccf5f1f7",
+          "word": "死亡之帽",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-5e2ae06998",
+          "word": "纳什之牙",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-2c3ee0d911",
+          "word": "日炎斗篷",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-479693e091",
+          "word": "冰霜之心",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-8f92eb978e",
+          "word": "振奋盔甲",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-1a588ef01f",
+          "word": "荆棘之甲",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-dc9ad08fc1",
+          "word": "狂徒铠甲",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-af0bf4d1e2",
+          "word": "幽梦之灵",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-4310109c2d",
+          "word": "黑色切割者",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-c1c94355d3",
+          "word": "守护天使",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-19e22a55d9",
+          "word": "魔宗",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-29be1335b0",
+          "word": "法穿鞋",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-910b3369b6",
+          "word": "火炮",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-79fd168ae5",
+          "word": "电刀",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-ead58f6c5b",
+          "word": "狂战士胫甲",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-8ce49b62f2",
+          "word": "明朗之靴",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-ac6fce7670",
+          "word": "疾行之靴",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-769bcf8ea0",
+          "word": "铁板靴",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-62c0363193",
+          "word": "多兰盾",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-124f0290f6",
+          "word": "多兰戒",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-1ec1d31428",
+          "word": "女神之泪",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-cb673437c3",
+          "word": "死亡之舞",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-3f84b61206",
+          "word": "贪欲九头蛇",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-a0af970983",
+          "word": "朔极之矛",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-1193b91b4b",
+          "word": "夜之锋刃",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-28de77fc08",
+          "word": "破舰者",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-92f48a5f7a",
+          "word": "挺进破坏者",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-7dfedf4003",
+          "word": "神圣分离者",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-4d2b81b5e0",
+          "word": "海妖杀手",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-c96b98fadf",
+          "word": "巨蛇之牙",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-b6af17e64d",
+          "word": "狂风之力",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-63bd8b9684",
+          "word": "兰顿之兆",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-1daef806e6",
+          "word": "鬼索之刃",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-94c2ea4667",
+          "word": "纳沃利",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-bc725636ce",
+          "word": "血手",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-a2fba0cf24",
+          "word": "救赎",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-237793c5cc",
+          "word": "香炉",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-1430f93927",
+          "word": "骑士之誓",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-86fa830906",
+          "word": "钢铁烈阳之匣",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-ac9968e7a8",
+          "word": "米凯尔坩埚",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-4df60a7fd0",
+          "word": "帝国指令",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        },
+        {
+          "id": "lol-9bbd1883b8",
+          "word": "月蚀",
+          "aliases": [],
+          "difficulty": 2,
+          "drawability": 3
+        }
+      ]
+    }
+  ]
+}
+

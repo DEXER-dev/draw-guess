@@ -1,0 +1,16 @@
+{
+  "name": "draw-guess",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "免APP网页你画我猜：扫码/链接加入，手机PC同玩",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "audit:words": "node scripts/audit-words.mjs"
+  },
+  "dependencies": {
+    "qrcode": "^1.5.4",
+    "ws": "^8.18.0"
+  }
+}

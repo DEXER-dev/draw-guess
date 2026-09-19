@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>速成你画我猜 · PV 第一幕录制</title>
+  <style>
+    :root { color-scheme: dark; }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; width: 100%; height: 100%; overflow: hidden; background: #0b1024; font-family: system-ui, "Microsoft YaHei", sans-serif; }
+    #stage { position: relative; width: 100vw; height: 100vh; overflow: hidden; background: #0b1024; }
+    #game { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; transform-origin: 0 0; transition: transform 900ms cubic-bezier(.2,.82,.2,1); background: #0b1024; }
+    #cursor { position: absolute; z-index: 10; width: 34px; height: 34px; pointer-events: none; transform: translate(-100px,-100px); transition: transform 850ms cubic-bezier(.2,.82,.2,1); }
+    #cursor::before { content: ""; position: absolute; left: 7px; top: 2px; width: 0; height: 0; border-left: 9px solid white; border-top: 20px solid transparent; border-bottom: 4px solid transparent; filter: drop-shadow(0 2px 2px #111); transform: rotate(-18deg); }
+    #cursor::after { content: ""; position: absolute; left: -2px; top: -2px; width: 34px; height: 34px; border: 3px solid rgba(255,214,56,.95); border-radius: 50%; box-shadow: 0 0 0 6px rgba(255,214,56,.18), 0 0 28px rgba(255,214,56,.7); }
+    #click-ring { position: absolute; z-index: 9; width: 54px; height: 54px; border: 4px solid #ffd638; border-radius: 50%; opacity: 0; transform: translate(-50%,-50%) scale(.5); pointer-events: none; }
+    #caption { position: absolute; z-index: 12; left: 50%; bottom: 5.5vh; transform: translateX(-50%); padding: 10px 24px; border: 1px solid rgba(255,255,255,.25); border-radius: 999px; background: rgba(7,13,35,.82); color: white; font-weight: 800; font-size: clamp(18px,2.2vw,34px); letter-spacing: .04em; opacity: 0; transition: opacity .35s ease; white-space: nowrap; }
+    #badge { position: absolute; z-index: 12; top: 3vh; left: 3vw; padding: 7px 13px; border-radius: 999px; background: rgba(255,255,255,.92); color: #1b2550; font-weight: 800; opacity: 0; transition: opacity .35s ease; }
+    #fallback { position: absolute; inset: 0; display: grid; place-items: center; color: white; background: #0b1024; font-size: 22px; }
+  </style>
+</head>
+<body>
+  <div id="stage">
+    <iframe id="game" title="真实游戏画面" allow="autoplay"></iframe>
+    <div id="fallback">正在载入真实对局…</div>
+    <div id="cursor"></div>
+    <div id="click-ring"></div>
+    <div id="badge">实机画面 · 音频表情包</div>
+    <div id="caption">🎞 发送一个音频表情包</div>
+  </div>
+  <script>
+    const room = new URLSearchParams(location.search).get('room') || '';
+    const iframe = document.querySelector('#game');
+    const stage = document.querySelector('#stage');
+    const cursor = document.querySelector('#cursor');
+    const ring = document.querySelector('#click-ring');
+    const caption = document.querySelector('#caption');
+    const badge = document.querySelector('#badge');
+    const fallback = document.querySelector('#fallback');
+    // 录制页使用一次性身份，避免和其它测试标签页复用同一 player token。
+    if (room) localStorage.removeItem(`dg_player_${room}`);
+    localStorage.setItem('dg_nickname', 'PV录制');
+    iframe.src = `/?join=${encodeURIComponent(room)}&pv=1`;
+
+    const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+    const doc = () => iframe.contentDocument;
+    const el = (selector) => doc()?.querySelector(selector);
+    const show = (node, on = true) => { node.style.opacity = on ? '1' : '0'; };
+    const moveCursor = (x, y) => { cursor.style.transform = `translate(${x - 8}px,${y - 5}px)`; };
+    const pulse = (x, y) => {
+      ring.style.left = `${x}px`; ring.style.top = `${y}px`; ring.style.opacity = '1'; ring.style.transform = 'translate(-50%,-50%) scale(.5)';
+      requestAnimationFrame(() => { ring.style.transition = 'transform .45s ease, opacity .45s ease'; ring.style.transform = 'translate(-50%,-50%) scale(1.45)'; ring.style.opacity = '0'; });
+    };
+    const rectInStage = (node) => {
+      const a = node.getBoundingClientRect();
+      const f = iframe.getBoundingClientRect();
+      return { x: f.left + a.left + a.width / 2, y: f.top + a.top + a.height / 2, left: f.left + a.left, top: f.top + a.top, width: a.width, height: a.height };
+    };
+    async function waitFor(selector, timeout = 16000) {
+      const start = Date.now();
+      while (Date.now() - start < timeout) { const node = el(selector); if (node) return node; await sleep(150); }
+      return null;
+    }
+    async function joinIfNeeded() {
+      const d = doc();
+      if (!d) return;
+      const home = d.querySelector('#screen-home');
+      if (home && !home.classList.contains('hidden')) {
+        const nick = d.querySelector('#nicknameInput');
+        const code = d.querySelector('#roomCodeInput');
+        if (nick) nick.value = 'PV观众';
+        if (code) code.value = room;
+        d.querySelector('#joinBtn')?.click();
+      }
+    }
+    async function waitUntilInGame(timeout = 20000) {
+      const start = Date.now();
+      while (Date.now() - start < timeout) {
+        const d = doc();
+        const game = d?.querySelector('#screen-game');
+        if (game && !game.classList.contains('hidden') && d.querySelector('#memePackToggle')) return true;
+        await joinIfNeeded();
+        await sleep(450);
+      }
+      return false;
+    }
+    async function run() {
+      await sleep(900);
+      if (!await waitUntilInGame()) { fallback.textContent = '真实对局未进入游戏阶段'; return; }
+      // 新加入的录制玩家可能正好轮到画手选题，自动选第一项后再进入真实作画界面。
+      await sleep(700);
+      const chooser = doc()?.querySelector('#overlayContent button');
+      if (chooser) { chooser.click(); await sleep(500); }
+      const button = await waitFor('#memePackToggle');
+      if (!button) { fallback.textContent = '真实对局未进入游戏阶段'; return; }
+      fallback.remove();
+      button.scrollIntoView({ block: 'center', inline: 'center' });
+      await sleep(500);
+      const target = rectInStage(button);
+      show(badge);
+      await sleep(1500);
+      moveCursor(stage.clientWidth * .26, stage.clientHeight * .56);
+      await sleep(400);
+      // 轻微放大，锚点就是实际音频表情包按钮。
+      const scale = 1.55;
+      iframe.style.transform = `translate(${stage.clientWidth / 2 - target.x * scale}px,${stage.clientHeight / 2 - target.y * scale}px) scale(${scale})`;
+      const zoomTarget = { x: stage.clientWidth / 2, y: stage.clientHeight / 2 };
+      moveCursor(zoomTarget.x, zoomTarget.y);
+      caption.textContent = '🎞 音频表情包'; show(caption);
+      await sleep(950);
+      button.click();
+      pulse(zoomTarget.x, zoomTarget.y);
+      await sleep(450);
+      const item = await waitFor('[data-pack-id="impact-boom-01"]', 3000);
+      if (item) {
+        const itemRect = rectInStage(item);
+        moveCursor(itemRect.x, itemRect.y);
+        await sleep(420);
+        item.click();
+        pulse(itemRect.x, itemRect.y);
+      }
+      await sleep(600);
+      caption.textContent = 'Vine Boom · 震撼一击';
+      await sleep(800);
+      show(caption, false);
+      show(badge, false);
+      iframe.style.transform = 'none';
+      await sleep(600);
+      document.body.dataset.done = '1';
+    }
+    iframe.addEventListener('load', () => { setTimeout(joinIfNeeded, 450); });
+    run().catch(err => { fallback.textContent = `录制场景载入失败：${err.message}`; });
+  </script>
+</body>
+</html>

@@ -1,0 +1,365 @@
+{
+  "version": 6,
+  "purpose": "本地笔皮肤与抽卡展示资源，皮肤 ID 可同步用于房间内显示笔尖，不参与笔迹或得分",
+  "delivery": {
+    "format": "webp",
+    "maxDimension": 512,
+    "quality": 78,
+    "fallback": "png",
+    "cache": "public, max-age=31536000, immutable"
+  },
+  "cursor": {
+    "trail": true,
+    "trailMode": "profiled-local",
+    "skinIdSync": true,
+    "positionSync": false,
+    "anchor": "per-skin normalized 64px image-box anchor",
+    "defaultAnchor": [
+      0.078,
+      0.922
+    ],
+    "overrides": {
+      "classic-pencil": [
+        0.075,
+        0.952
+      ],
+      "crayon-pop": [
+        0.165,
+        0.93
+      ],
+      "rainbow-marker": [
+        0.11,
+        0.91
+      ],
+      "pixel-arcade": [
+        0.06,
+        0.95
+      ],
+      "ink-brush": [
+        0.075,
+        0.953
+      ],
+      "starry-doodle": [
+        0.052,
+        0.963
+      ],
+      "crystal-turret": [
+        0.115,
+        0.963
+      ],
+      "windblade": [
+        0.052,
+        0.85
+      ],
+      "mushroom-scout": [
+        0.052,
+        0.84
+      ],
+      "coke-refresh": [
+        0.05,
+        0.97
+      ],
+      "paimon-starlight": [
+        0.052,
+        0.9
+      ],
+      "pikachu-thunderbolt": [
+        0.075,
+        0.98
+      ],
+      "miku-future-echo": [
+        0.038,
+        0.964
+      ],
+      "teto-crimson-chorus": [
+        0.039,
+        0.964
+      ],
+      "persona3-blue-hour": [
+        0.035,
+        0.985
+      ],
+      "voxel-overworld": [
+        0.388,
+        0.95
+      ],
+      "burger-buddy": [
+        0.405,
+        0.95
+      ],
+      "dragon-ink": [
+        0.414,
+        0.99
+      ],
+      "infinity-edge": [
+        0.049,
+        0.85
+      ],
+      "fire-kylin": [
+        0.977,
+        0.199
+      ],
+      "milk-tea": [
+        0.346,
+        0.995
+      ],
+      "snowking-frost": [
+        0.13,
+        0.81
+      ],
+      "eva-unit01": [
+        0.381,
+        0.98
+      ],
+      "wuju-master": [
+        0.63,
+        0.99
+      ],
+      "dongqin-sea-breeze": [
+        0.052,
+        0.98
+      ],
+      "bocchi-lonely-rock": [
+        0.061,
+        0.972
+      ],
+      "kuuga-mighty-legacy": [
+        0.039,
+        0.922
+      ],
+      "whale-maid-tide": [
+        0.04,
+        0.92
+      ],
+      "luo-tianyi-resonance": [
+        0.06,
+        0.968
+      ]
+    }
+  },
+  "skins": [
+    {
+      "id": "classic-pencil",
+      "name": "经典铅笔",
+      "rarity": "free",
+      "asset": "classic-pencil.webp",
+      "description": "永久免费领取的第一支笔。"
+    },
+    {
+      "id": "crayon-pop",
+      "name": "蜡笔泡泡",
+      "rarity": "common",
+      "asset": "crayon-pop.webp",
+      "description": "像盒彩笔一样元气的红橙蜡笔。"
+    },
+    {
+      "id": "rainbow-marker",
+      "name": "彩虹马克笔",
+      "rarity": "rare",
+      "asset": "rainbow-marker.webp",
+      "description": "把彩虹藏进笔杆的小小马克笔。"
+    },
+    {
+      "id": "pixel-arcade",
+      "name": "像素街机",
+      "rarity": "rare",
+      "asset": "pixel-arcade.webp",
+      "description": "复古街机风格的像素画笔。"
+    },
+    {
+      "id": "ink-brush",
+      "name": "一笔水墨",
+      "rarity": "epic",
+      "asset": "ink-brush.webp",
+      "description": "安静、利落的东方水墨笔。"
+    },
+    {
+      "id": "starry-doodle",
+      "name": "星光涂鸦笔",
+      "rarity": "epic",
+      "asset": "starry-doodle.webp",
+      "description": "把小星星画在笔杆上的涂鸦笔。"
+    },
+    {
+      "id": "crystal-turret",
+      "name": "水晶防御塔",
+      "rarity": "epic",
+      "asset": "crystal-turret.webp",
+      "description": "把深蓝石甲、蓝色水晶和红色能量核心缩成一支战斗画笔。"
+    },
+    {
+      "id": "windblade",
+      "name": "疾风剑意",
+      "rarity": "epic",
+      "asset": "windblade.webp",
+      "description": "将蓝色风纹、银色护手与剑意收进一支疾风画笔。"
+    },
+    {
+      "id": "mushroom-scout",
+      "name": "蘑菇侦察员",
+      "rarity": "rare",
+      "asset": "mushroom-scout.webp",
+      "description": "橄榄绿侦察笔，带着一顶醒目的红色蘑菇帽。"
+    },
+    {
+      "id": "coke-refresh",
+      "name": "畅爽红·可口可乐",
+      "rarity": "epic",
+      "asset": "coke-refresh.webp",
+      "description": "红白飘带、气泡与瓶盖，把清爽装进每一笔。"
+    },
+    {
+      "id": "paimon-starlight",
+      "name": "星海领航·派蒙",
+      "rarity": "legendary",
+      "asset": "paimon-legend.webp",
+      "effectId": "paimon-stardust",
+      "description": "派蒙陪你把星光写进每一笔。"
+    },
+    {
+      "id": "pikachu-thunderbolt",
+      "name": "皮卡丘·电光奇缘",
+      "rarity": "legendary",
+      "asset": "pikachu-thunderbolt.webp",
+      "effectId": "pikachu-voltage",
+      "description": "黄色电气伙伴、闪电纹路与红色能量宝石组成的传说画笔。"
+    },
+    {
+      "id": "miku-future-echo",
+      "name": "初音·未来回响",
+      "rarity": "legendary",
+      "asset": "miku-future-echo.webp",
+      "effectId": "miku-chorus",
+      "description": "青绿色双马尾歌姬、音符波形与青粉舞台灯光组成的传说画笔。"
+    },
+    {
+      "id": "teto-crimson-chorus",
+      "name": "重音Teto·绯红节拍",
+      "rarity": "legendary",
+      "asset": "teto-crimson-chorus.webp",
+      "effectId": "teto-rhythm",
+      "description": "绯红双钻头歌姬、心跳波形与音符棱光组成的传说画笔。"
+    },
+    {
+      "id": "persona3-blue-hour",
+      "name": "Persona 3·深蓝月蚀",
+      "rarity": "legendary",
+      "asset": "persona3-blue-hour-v2.webp",
+      "effectId": "persona3-arcana",
+      "description": "深蓝时刻、月相时钟与塔罗召唤意象组成的 Persona 3 主题传说画笔。"
+    },
+    {
+      "id": "voxel-overworld",
+      "name": "方块秘境·钻石笔",
+      "rarity": "legendary",
+      "asset": "voxel-overworld.webp",
+      "effectId": "voxel-trail",
+      "description": "草方块、矿石与钻石水晶组成的方块沙盒传说笔。"
+    },
+    {
+      "id": "burger-buddy",
+      "name": "芝士汉堡·畅画笔",
+      "rarity": "epic",
+      "asset": "burger-buddy.webp",
+      "description": "芝麻面包、生菜、芝士、番茄与烤肉排叠成的元气汉堡画笔。"
+    },
+    {
+      "id": "dragon-ink",
+      "name": "龙焰秘典·龙笔",
+      "rarity": "legendary",
+      "asset": "dragon-ink.webp",
+      "effectId": "dragon-flame",
+      "description": "金色古典龙纹缠绕黑铁笔杆，赤鳞与琥珀宝石守住每一笔。"
+    },
+    {
+      "id": "infinity-edge",
+      "name": "无尽之刃·暴击锋芒",
+      "rarity": "legendary",
+      "asset": "infinity-edge.webp",
+      "effectId": "infinity-edge-crit",
+      "description": "斜向银钢双刃、深色剑脊、金色符文、红色宝石护手与黑曜笔身组成的原创无尽之刃主题画笔。"
+    },
+    {
+      "id": "fire-kylin",
+      "name": "AK47·火麒麟",
+      "rarity": "legendary",
+      "asset": "fire-kylin-v4.webp",
+      "effectId": "fire-kylin-flame",
+      "description": "黑红 AK 轮廓、金色龙纹、木质枪托与发光麒麟兽首组成的原创火麒麟主题画笔。"
+    },
+    {
+      "id": "milk-tea",
+      "name": "珍珠奶茶·甜甜笔",
+      "rarity": "epic",
+      "asset": "milk-tea.webp",
+      "description": "茶色渐变、奶盖、珍珠和吸管组成的奶茶主题画笔。"
+    },
+    {
+      "id": "snowking-frost",
+      "name": "冰爽雪王·蜜雪主题",
+      "rarity": "epic",
+      "asset": "snowking-frost.webp",
+      "effectId": "snowking-frost",
+      "description": "红白冰饮、柠檬雪花、冰晶与原创雪人挂件组成的清凉主题画笔。"
+    },
+    {
+      "id": "eva-unit01",
+      "name": "初号机·暴走画笔",
+      "rarity": "legendary",
+      "asset": "eva-unit01.webp",
+      "effectId": "eva-awakening",
+      "description": "紫色装甲、荧光绿结构和橙色核心组成的觉醒系机械画笔。"
+    },
+    {
+      "id": "wuju-master",
+      "name": "无极剑意·剑圣笔",
+      "rarity": "epic",
+      "asset": "wuju-master.webp",
+      "description": "七枚洞察镜片、白色发束与翠金 Wuju 护具组成的剑圣主题画笔。"
+    },
+    {
+      "id": "dongqin-sea-breeze",
+      "name": "东秦·知行海风",
+      "rarity": "epic",
+      "asset": "dongqin-sea-breeze.webp",
+      "description": "白山黑水与长城校徽意象、海浪、指南针和工科电路组成的校园主题画笔。"
+    },
+    {
+      "id": "bocchi-lonely-rock",
+      "name": "波奇·孤独摇弦",
+      "rarity": "legendary",
+      "asset": "bocchi-lonely-rock.webp",
+      "effectId": "bocchi-stage",
+      "description": "粉蓝电吉他、六弦拾音器、蓝黄几何挂件与社恐音浪组成的原创摇滚传说笔。"
+    },
+    {
+      "id": "kuuga-mighty-legacy",
+      "name": "空我·赤色灵石",
+      "rarity": "legendary",
+      "asset": "kuuga-mighty-legacy.webp",
+      "effectId": "kuuga-seal",
+      "description": "赤色装甲、黑金古代纹路、红色灵石核心与双角护冠组成的原创骑士传说笔。"
+    },
+    {
+      "id": "whale-maid-tide",
+      "name": "鲸蓝女仆·潮汐礼赞",
+      "rarity": "legendary",
+      "asset": "whale-maid-tide.webp",
+      "effectId": "whale-tide",
+      "description": "鲸尾、白色褶边、蓝色蝴蝶结与海潮宝石组成的原创鲸蓝女仆传说笔。"
+    },
+    {
+      "id": "luo-tianyi-resonance",
+      "name": "洛天依·共鸣天籁",
+      "rarity": "legendary",
+      "asset": "luo-tianyi-resonance.webp",
+      "effectId": "luo-tianyi-resonance",
+      "description": "天依蓝、银白飘带、麦克风声波与共鸣晶体组成的原创电子歌姬传说笔。"
+    }
+  ],
+  "provenance": {
+    "source": "Existing entries include Codex-generated Paimon art from a user-provided reference; coke-refresh was generated by Codex from the existing pen-skin style direction and a Coca-Cola-inspired art brief; voxel-overworld was generated by Codex from a blocky voxel sandbox-inspired art brief; burger-buddy was generated by Codex from a generic hamburger-themed art brief; dragon-ink was generated by Codex from an original ornate golden dragon drawing-pen brief inspired by the mood of classic dragon-themed shooter artwork; infinity-edge uses the existing diagonal windblade pen silhouette as a construction base, then deterministically recolors it to silver steel and an obsidian spine and adds original gold rune inlays plus a red-orange gem after checking the League of Legends Infinity Edge icon references at https://wiki.leagueoflegends.com/en-us/File:Infinity_Edge_item_HD.png and https://www.millenium.gg/guias/33688.html; no official art was copied; fire-kylin-v4 was generated with the built-in image_gen edit flow from fire-kylin-v3, making the AK47 muzzle itself the single aligned pen tip and tightening the classic AK47 Fire Kylin black-crimson-gold armor and attached qilin head after checking public AK47-火麒麟 references at https://cncf.fandom.com/zh/wiki/AK47-%E7%81%AB%E9%BA%92%E9%BA%97 and https://games.sina.com.cn/o/z/cf/weapon.shtml; it preserves a clear stock, receiver, curved magazine, dragon head, flame channels, and pen nib without official logo, text, or copied weapon image; milk-tea was generated by Codex from an original unbranded bubble-tea drawing-pen brief; snowking-frost was generated by Codex from an original red-white ice-drink and snowman drawing-pen brief inspired by the mood of a user-requested ice-drink brand theme; eva-unit01 was generated by Codex from an original purple-green biomechanical mecha drawing-pen brief inspired by the mood of a user-requested animation reference; wuju-master was generated by Codex from an original Wuju / Master Yi-inspired drawing-pen brief with seven lenses, white hair, and jade-gold armor cues; persona3-blue-hour-v2 was generated by Codex from an original compact midnight-blue fountain-pen brief with moon-phase clock, arcana card, coffin geometry, and Blue Hour cues inspired by the mood of a user-requested Persona 3 theme; dongqin-sea-breeze was generated by Codex from an original collegiate engineering fountain-pen brief with sea waves, compass, campus architecture, and a simplified white-mountain-black-water-and-great-wall crest motif inspired by a user-requested Northeastern University at Qinhuangdao theme; pikachu-thunderbolt was generated by Codex from an original yellow lightning-themed drawing-pen brief with an abstract thunder-sprite charm inspired by a user-requested Pikachu theme; miku-future-echo was generated by Codex from a Hatsune Miku-themed drawing-pen brief using the official Crypton Future Media character presentation as visual reference; teto-crimson-chorus was generated by Codex from a Kasane Teto-themed drawing-pen brief using the official Kasane Teto site and its official illustration page as visual reference; bocchi-lonely-rock was generated by Codex with the built-in image_gen tool from an original diagonal electric-guitar drawing-pen brief inspired by the mood and color language of Bocchi the Rock; it uses pink-blue lacquer, cyan pickups, yellow-blue geometric accents, and no character portrait, official logo, or copied key art; kuuga-mighty-legacy was generated with the built-in image_gen tool from an original diagonal red-black armored fountain-pen brief inspired by the visual mood of Kamen Rider Kuuga Mighty Form after checking Toei's official Kuuga form catalog at https://www.kamen-rider-official.com/zukan/forms/574 and series page at https://www.kamen-rider-official.com/series/kuuga/; it uses a red-black-gold palette, circular crimson transformation-core motif, ancient-glyph accents, and an abstract horned finial without a character body, official logo, or copied key art; whale-maid-tide was generated with the built-in image_gen tool from an original diagonal whale-maid ocean attendant drawing-pen brief based on the user-provided reference palette and motifs (navy/periwinkle, white frills, blue bow, whale emblem and tail); no character portrait, official logo, readable text or copied art was used; luo-tianyi-resonance was generated with the built-in image_gen tool from an original diagonal electronic singer drawing-pen brief based on public Luo Tianyi references: silver-gray twin-tail ribbon language, Tianyi blue #66CCFF, white-blue stage styling, microphone and waveform motifs; the reference sources were the official Luo Tianyi site at https://luotianyi.jp/ and the public reference images returned by image search; no character portrait, official logo, readable text or copied key art was used",
+    "cleanup": "scripts/prepare-pen-skin.mjs removes connected light backdrop pixels; scripts/create-infinity-edge-png.mjs performs the deterministic palette pass and attached details; the generated fire-kylin-v4.png was alpha-checked after generation; scripts/create-fire-kylin-png.mjs remains the earlier deterministic draft generator; burger-buddy, dragon-ink, milk-tea, snowking-frost, eva-unit01, wuju-master, persona3-blue-hour, persona3-blue-hour-v2, dongqin-sea-breeze, pikachu-thunderbolt, miku-future-echo, teto-crimson-chorus and infinity-edge were alpha-checked after generation and contain no continuous trail or baked UI text; infinity-edge is a diagonal PNG and fire-kylin-v4 is a diagonal landscape PNG; both keep their reference silhouettes readable at cursor scale; bocchi-lonely-rock was alpha-checked and normalized to 1024x1024 RGBA; kuuga-mighty-legacy was alpha-checked as a transparent 1536x1024 RGBA diagonal asset with a clear nib at lower-left and no baked UI text; whale-maid-tide was alpha-checked as a transparent 1312x1199 RGBA diagonal asset with a clear nib at lower-left and no baked UI text; luo-tianyi-resonance was alpha-checked as a transparent 1222x1287 RGBA diagonal asset with a clear nib at lower-left and no baked UI text",
+    "license": "generated game assets for private testing; Paimon reference rights, the Coca-Cola trademark/logo, and any external style or brand references require rights review before public or commercial distribution; infinity-edge is an original fan-inspired design with no Riot or League of Legends logo, text, or copied official artwork; fire-kylin-v4 is an original CrossFire-inspired design with no official logo, text, or copied weapon image; bocchi-lonely-rock is an original fan-inspired design with external reference rights requiring review before public or commercial distribution; kuuga-mighty-legacy is an original fan-inspired design with external reference rights requiring review before public or commercial distribution; whale-maid-tide is an original fan-inspired design with external reference rights requiring review before public or commercial distribution; luo-tianyi-resonance is an original fan-inspired design with external reference rights requiring review before public or commercial distribution"
+  }
+}
