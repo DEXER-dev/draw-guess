@@ -51,8 +51,7 @@
     musicRoomCurrent: null,
     musicCurrent: null,
     biliResolved: null,
-    musicSource: 'netease',
-    neteaseResults: [],
+    musicSource: 'gd',
     gdResults: [],
     musicLyric: '',
     lyricLines: [],
@@ -4391,7 +4390,7 @@
       if (!state.musicQueue || state.musicQueue.length === 0) {
         const li = document.createElement('li');
         li.className = 'music-queue-empty';
-        li.textContent = '队列是空的，搜索网易云、GD音乐台或输入 BV 号点歌吧';
+        li.textContent = '队列是空的，搜索 GD 音乐台或输入 BV 号点歌吧';
         list.appendChild(li);
       } else {
         state.musicQueue.forEach((item) => {
@@ -4407,50 +4406,6 @@
     }
 
     updateMusicPlaybackUI();
-  }
-
-  function renderNeteaseResults() {
-    const box = $('#neteaseResults');
-    if (!box) return;
-    box.innerHTML = '';
-    const results = state.neteaseResults || [];
-    if (results.length === 0) return;
-
-    for (const song of results) {
-      const item = document.createElement('div');
-      item.className = 'netease-result-item';
-      const title = document.createElement('div');
-      title.className = 'netease-result-title';
-      title.textContent = song.title || '未知歌曲';
-      const meta = document.createElement('div');
-      meta.className = 'netease-result-meta';
-      const parts = [];
-      if (song.artist) parts.push(song.artist);
-      if (song.album) parts.push(song.album);
-      if (song.duration) parts.push(formatSongDuration(song.duration));
-      meta.textContent = parts.join(' · ');
-
-      const actions = document.createElement('div');
-      actions.className = 'netease-result-actions';
-      const btn = document.createElement('button');
-      btn.className = 'btn primary';
-      btn.textContent = '🎵 点歌';
-      btn.addEventListener('click', () => {
-        send({
-          type: 'music_netease_request',
-          songId: song.id,
-          title: song.title,
-          artist: song.artist,
-          duration: song.duration,
-          cover: song.cover,
-        });
-        btn.disabled = true;
-        btn.textContent = '已提交';
-      });
-      actions.appendChild(btn);
-      item.append(title, meta, actions);
-      box.appendChild(item);
-    }
   }
 
   function renderGdResults() {
@@ -5102,16 +5057,13 @@
     state.musicRoomCurrent = null;
     state.musicCurrent = null;
     state.biliResolved = null;
-    state.musicSource = 'netease';
-    state.neteaseResults = [];
+    state.musicSource = 'gd';
     state.gdResults = [];
     state.musicLyric = '';
     state.lyricLines = [];
     state.musicPlaybackStatus = 'idle';
     state.musicPendingSong = null;
     updateLyricUI();
-    const neteaseResultsBox = $('#neteaseResults');
-    if (neteaseResultsBox) neteaseResultsBox.innerHTML = '';
     const gdResultsBox = $('#gdResults');
     if (gdResultsBox) gdResultsBox.innerHTML = '';
     const biliPreviewBox = $('#biliPreview');
@@ -5402,17 +5354,11 @@
         state.musicRoomCurrent = msg.current || null;
         renderMusicPanel();
         renderBiliPreview();
-        renderNeteaseResults();
         renderGdResults();
         if (!state.musicCurrent) {
           const first = state.musicRoomCurrent || state.musicQueue[0];
           if (first && first.url) playMusic(first);
         }
-        break;
-
-      case 'music_netease_results':
-        state.neteaseResults = msg.results || [];
-        renderNeteaseResults();
         break;
 
       case 'music_gd_results':
@@ -5802,35 +5748,17 @@
       updateLyricsToggleUI();
     }
 
-    // 音乐点歌源切换：网易云 / GD音乐台 / B站 BV
+    // 音乐点歌源切换：GD音乐台 / B站 BV
     const setMusicSource = (source) => {
       state.musicSource = source;
       document.querySelectorAll('.music-source-btn').forEach((btn) => {
         btn.classList.toggle('active', btn.dataset.source === source);
       });
-      $('#neteasePoint').classList.toggle('hidden', source !== 'netease');
       $('#gdPoint').classList.toggle('hidden', source !== 'gd');
       $('#biliPoint').classList.toggle('hidden', source !== 'bili');
     };
     document.querySelectorAll('.music-source-btn').forEach((btn) => {
       btn.addEventListener('click', () => setMusicSource(btn.dataset.source));
-    });
-
-    // 网易云搜索
-    const searchNetease = () => {
-      const q = $('#neteaseInput').value.trim();
-      if (!q) {
-        toast('请输入歌名或歌手', 'error');
-        return;
-      }
-      send({ type: 'music_netease_search', q });
-    };
-    $('#neteaseSearchBtn').addEventListener('click', searchNetease);
-    $('#neteaseInput').addEventListener('keydown', (e) => {
-      if (e.key === 'Enter') {
-        e.preventDefault();
-        searchNetease();
-      }
     });
 
     // GD音乐台搜索

@@ -131,17 +131,9 @@ const BILI_COOKIE_FILE = String(process.env.BILI_COOKIE_FILE || '').trim();
 const BILI_PROXY = String(process.env.BILI_PROXY || '').trim();
 const BILI_USER_AGENT = String(process.env.BILI_USER_AGENT || 'Mozilla/5.0').trim();
 const MUSIC_MAX_QUEUE = 20;
-const MUSIC_API_BASE = (process.env.MUSIC_API_BASE || 'http://127.0.0.1:3001').replace(/\/$/, '');
-const MUSIC_NETEASE_COOKIE = process.env.MUSIC_NETEASE_COOKIE || '';
-const MUSIC_NETEASE_UNBLOCK = String(process.env.MUSIC_NETEASE_UNBLOCK ?? '1') === '1';
-const MUSIC_NETEASE_MATCH_SOURCES = String(process.env.MUSIC_NETEASE_MATCH_SOURCES || '')
-  .split(',')
-  .map((s) => s.trim())
-  .filter(Boolean);
 const MUSIC_GD_MUSIC_ENABLED = String(process.env.MUSIC_GD_MUSIC_ENABLED ?? '1') === '1';
 const MUSIC_GD_MUSIC_BASE = (process.env.MUSIC_GD_MUSIC_BASE || 'https://music-api.gdstudio.xyz').replace(/\/$/, '');
-const MUSIC_NETEASE_ALLOW_TRIAL = String(process.env.MUSIC_NETEASE_ALLOW_TRIAL || '0') === '1';
-const MUSIC_NETEASE_TIMEOUT_MS = Number(process.env.MUSIC_NETEASE_TIMEOUT || 25000);
+const MUSIC_API_TIMEOUT_MS = Number(process.env.MUSIC_API_TIMEOUT || 25000);
 const FFMPEG_LOCATION = process.env.FFMPEG_PATH || process.env.FFMPEG_DIR || '';
 const execFileAsync = promisify(execFile);
 
@@ -1012,32 +1004,12 @@ async function handleBiliRequest(room, player, msg) {
   }
 }
 
-// ---------- 网易云音乐：外部 API 集成 ----------
-function neteaseKey(songId) {
-  return `ne${songId}`;
-}
-
+// ---------- GD音乐台：独立 API 解析源（含歌词） ----------
 function gdKey(songId) {
   return `gd${songId}`;
 }
 
-function neteaseApiUrl(endpoint, params = {}) {
-  const query = new URLSearchParams();
-  for (const [key, value] of Object.entries(params)) {
-    if (value !== undefined && value !== null && value !== '') query.set(key, String(value));
-  }
-  if (MUSIC_NETEASE_COOKIE) query.set('cookie', MUSIC_NETEASE_COOKIE);
-  return `${MUSIC_API_BASE}${endpoint}?${query.toString()}`;
-}
-
-async function neteaseFetchJson(endpoint, params = {}) {
-  const url = neteaseApiUrl(endpoint, params);
-  const res = await fetch(url, { signal: AbortSignal.timeout(MUSIC_NETEASE_TIMEOUT_MS) });
-  if (!res.ok) throw new Error(`网易云请求失败（HTTP ${res.status}）`);
-  return res.json();
-}
-
-function neteaseTrialReason(meta, expectedSec, actualSec, fileBytes = 0) {
+function audioTrialReason(meta, expectedSec, actualSec, fileBytes = 0) {
   if (!meta) return '';
   if (meta.freeTrialInfo && meta.freeTrialInfo !== 'null') return '接口标记为试听片段';
   if (expectedSec > 30 && actualSec != null && actualSec < Math.min(60, expectedSec * 0.55)) {
@@ -1061,44 +1033,6 @@ function neteaseTrialReason(meta, expectedSec, actualSec, fileBytes = 0) {
   return '';
 }
 
-async function searchNetease(q) {
-  const data = await neteaseFetchJson('/search', { keywords: q, limit: 10 });
-  const songs = (data && data.result && data.result.songs) || [];
-  return songs.map((song) => {
-    const album = song.album || {};
-    return {
-      id: String(song.id || ''),
-      title: String(song.name || '').slice(0, 80),
-      artist: Array.isArray(song.artists)
-        ? song.artists.map((a) => a.name).filter(Boolean).join(' / ')
-        : '',
-      album: String(album.name || '').slice(0, 60),
-      duration: Math.round(Number(song.duration || 0) / 1000),
-      cover: album.picUrl || album.blurPicUrl || '',
-    };
-  }).filter((song) => song.id);
-}
-
-async function resolveNeteaseUrl(songId, level = 'standard', { unblock = false } = {}) {
-  const params = { id: songId, level };
-  if (unblock) params.unblock = 'true';
-  const data = await neteaseFetchJson('/song/url/v1', params);
-  const item = Array.isArray(data.data) ? data.data.find((x) => x && x.url) : null;
-  if (!item || !item.url) throw new Error('这首歌暂时没有可用播放地址（可能受版权限制）');
-  return item;
-}
-
-async function resolveNeteaseMatchedUrl(songId, source = '') {
-  const params = { id: songId };
-  if (source) params.source = source;
-  const data = await neteaseFetchJson('/song/url/match', params);
-  if (data && typeof data.data === 'string' && /^https?:\/\//.test(data.data)) return data.data;
-  if (data && data.data && typeof data.data.url === 'string' && /^https?:\/\//.test(data.data.url)) {
-    return data.data.url;
-  }
-  throw new Error((data && data.msg) || '解灰接口未返回可用地址');
-}
-
 async function gdFetchJson(params = {}) {
   const query = new URLSearchParams();
   for (const [key, value] of Object.entries(params)) {
@@ -1106,7 +1040,7 @@ async function gdFetchJson(params = {}) {
   }
   const url = `${MUSIC_GD_MUSIC_BASE}/api.php?${query.toString()}`;
   const res = await fetch(url, {
-    signal: AbortSignal.timeout(MUSIC_NETEASE_TIMEOUT_MS),
+    signal: AbortSignal.timeout(MUSIC_API_TIMEOUT_MS),
     headers: { 'user-agent': 'Mozilla/5.0' },
   });
   if (!res.ok) throw new Error(`GD音乐台请求失败（HTTP ${res.status}）`);
@@ -1156,22 +1090,16 @@ async function probeAudioDuration(filePath) {
   return null;
 }
 
-async function resolveNeteaseLyric(songId) {
-  const data = await neteaseFetchJson('/lyric', { id: songId });
-  const lrc = data && data.lrc && data.lrc.lyric;
-  return typeof lrc === 'string' ? lrc.slice(0, 20000) : '';
-}
-
 function estimateAudioSeconds(bytes, br) {
   const bitrate = Number(br) > 0 ? Number(br) : 128000;
   return bytes * 8 / bitrate;
 }
 
-async function fetchNeteaseAudio(songId, info, audioUrl, meta = {}, options = {}) {
+async function fetchRemoteAudio(songId, info, audioUrl, meta = {}, options = {}) {
   ensureMusicCacheDir();
-  const key = options.cacheKey || neteaseKey(songId);
+  const key = options.cacheKey || gdKey(songId);
   const headers = options.headers || {};
-  const res = await fetch(audioUrl, { headers, signal: AbortSignal.timeout(MUSIC_NETEASE_TIMEOUT_MS) });
+  const res = await fetch(audioUrl, { headers, signal: AbortSignal.timeout(MUSIC_API_TIMEOUT_MS) });
   if (!res.ok) throw new Error(`音频下载失败（HTTP ${res.status}）`);
   const contentType = res.headers.get('content-type') || '';
   const isM4a = /m4a|mp4|aac/i.test(contentType) || /\.m4a(?:$|\?)/i.test(audioUrl);
@@ -1180,7 +1108,7 @@ async function fetchNeteaseAudio(songId, info, audioUrl, meta = {}, options = {}
   const filePath = path.join(MUSIC_CACHE_DIR, `${key}.${ext}`);
   await writeFile(filePath, buf);
   const actualDuration = await probeAudioDuration(filePath);
-  const trialReason = neteaseTrialReason(meta, Number(info.duration) || 0, actualDuration, buf.length);
+  const trialReason = audioTrialReason(meta, Number(info.duration) || 0, actualDuration, buf.length);
   return {
     filePath,
     buf,
@@ -1191,255 +1119,6 @@ async function fetchNeteaseAudio(songId, info, audioUrl, meta = {}, options = {}
       ? estimateAudioSeconds(buf.length, Number(meta && meta.br) || 0)
       : actualDuration,
   };
-}
-
-function storeNeteaseCache(key, info, result, { trial = false } = {}) {
-  const duration = trial
-    ? (result.trialSeconds || Number(info.duration) || 0)
-    : (result.actualDuration || Number(info.duration) || 0);
-  musicCache.set(key, {
-    bvid: key,
-    path: result.filePath,
-    size: result.buf.length,
-    lastUsed: Date.now(),
-    title: info.title,
-    uploader: info.artist,
-    duration,
-    thumbnail: info.cover,
-    lyric: info.lyric || '',
-    trial,
-  });
-  pruneMusicCache();
-}
-
-async function downloadTrialAudioForCache(songId, info) {
-  const item = await resolveNeteaseUrl(songId, 'standard', { unblock: MUSIC_NETEASE_UNBLOCK });
-  return fetchNeteaseAudio(songId, info, item.url, item);
-}
-
-async function downloadNeteaseAudio(songId, info) {
-  ensureMusicCacheDir();
-  const key = neteaseKey(songId);
-  const levels = ['standard', 'higher', 'exhigh', 'lossless'];
-  const expectedSec = Number(info.duration) || 0;
-  let lastTrial = null;
-  let lastError = null;
-
-  for (const level of levels) {
-    try {
-      const item = await resolveNeteaseUrl(songId, level, { unblock: false });
-      const preTrial = neteaseTrialReason(item, expectedSec, null, 0);
-      if (preTrial) {
-        lastError = new Error(`level=${level} 只返回试听片段`);
-        continue;
-      }
-      const result = await fetchNeteaseAudio(songId, info, item.url, item);
-      if (result.isTrial) {
-        lastTrial = { result, label: `level=${level}` };
-        lastError = new Error(`level=${level} 只返回试听片段`);
-        if (!MUSIC_NETEASE_ALLOW_TRIAL) {
-          try { unlinkSync(result.filePath); } catch { /* ignore */ }
-        }
-        continue;
-      }
-      storeNeteaseCache(key, info, result);
-      return;
-    } catch (err) {
-      lastError = err;
-    }
-  }
-
-  if (MUSIC_NETEASE_UNBLOCK) {
-    try {
-      const item = await resolveNeteaseUrl(songId, 'standard', { unblock: true });
-      const result = await fetchNeteaseAudio(songId, info, item.url, item);
-      if (!result.isTrial) {
-        storeNeteaseCache(key, info, result);
-        return;
-      }
-      lastTrial = { result, label: 'unblock=true' };
-      lastError = new Error('unblock=true 也只返回试听片段');
-      if (!MUSIC_NETEASE_ALLOW_TRIAL) {
-        try { unlinkSync(result.filePath); } catch { /* ignore */ }
-      }
-    } catch (err) {
-      lastError = err;
-    }
-  }
-
-  const matchSources = MUSIC_NETEASE_MATCH_SOURCES.length ? MUSIC_NETEASE_MATCH_SOURCES : [''];
-  for (const source of matchSources) {
-    try {
-      const matchedUrl = await resolveNeteaseMatchedUrl(songId, source);
-      const result = await fetchNeteaseAudio(songId, info, matchedUrl, { source: `match:${source || 'auto'}` });
-      if (!result.isTrial) {
-        storeNeteaseCache(key, info, result);
-        return;
-      }
-      lastTrial = { result, label: `match:${source || 'auto'}` };
-      lastError = new Error('解灰接口也只返回试听片段');
-      if (!MUSIC_NETEASE_ALLOW_TRIAL) {
-        try { unlinkSync(result.filePath); } catch { /* ignore */ }
-      }
-    } catch (err) {
-      lastError = err;
-    }
-  }
-
-  if (MUSIC_NETEASE_ALLOW_TRIAL) {
-    let trialResult = lastTrial ? lastTrial.result : null;
-    if (!trialResult) {
-      try {
-        trialResult = await downloadTrialAudioForCache(songId, info);
-      } catch (err) {
-        lastError = err;
-      }
-    }
-    if (trialResult) {
-      storeNeteaseCache(key, info, trialResult, { trial: true });
-      return;
-    }
-  }
-
-  throw new Error(MUSIC_NETEASE_ALLOW_TRIAL
-    ? '这首歌连试听片段都无法获取'
-    : '这首歌当前只返回试听片段或暂不可完整播放（可能受版权限制）');
-}
-
-function queueNeteaseSong(room, player, songId, info) {
-  const key = neteaseKey(songId);
-  const queueError = validateMusicQueue(room);
-  if (queueError) {
-    sendJson(player.ws, { type: 'music_error', message: queueError });
-    return;
-  }
-  const exists = room.songQueue.some((x) => x.key === key) || (room.musicCurrent && room.musicCurrent.key === key);
-  if (exists) {
-    sendJson(player.ws, { type: 'music_error', message: '这首歌已经在队列里了' });
-    return;
-  }
-  const cached = musicCache.get(key);
-  const item = {
-    key,
-    title: String(info.title || '未知歌曲').slice(0, 80),
-    uploader: String(info.artist || '').slice(0, 40),
-    duration: (cached && cached.duration) || Number(info.duration) || 0,
-    thumbnail: info.cover || '',
-    source: 'netease',
-    status: 'ready',
-    requestedBy: player.nickname,
-    requestedById: player.id,
-    lyric: info.lyric || '',
-    trial: Boolean(cached && cached.trial),
-  };
-  room.songQueue.push(item);
-  broadcastMusicState(room);
-  if (!room.musicCurrent) playNextSong(room);
-}
-
-async function validateNeteaseCachedEntry(songId, cached, expectedSec) {
-  const key = neteaseKey(songId);
-  if (cached.trial) return { ok: true, trial: true };
-  const actualDuration = await probeAudioDuration(cached.path);
-  const reason = neteaseTrialReason({}, expectedSec, actualDuration, cached.size || 0);
-  if (reason) {
-    if (!MUSIC_NETEASE_ALLOW_TRIAL) {
-      try { unlinkSync(cached.path); } catch { /* ignore */ }
-      musicCache.delete(key);
-      return { ok: false, reason };
-    }
-    cached.trial = true;
-    if (!cached.duration) {
-      cached.duration = actualDuration || estimateAudioSeconds(cached.size || 0, 0);
-    }
-    return { ok: true, trial: true };
-  }
-  return { ok: true, trial: false };
-}
-
-async function handleNeteaseSearch(room, player, msg) {
-  const q = String(msg.q || '').trim();
-  if (!q) {
-    sendJson(player.ws, { type: 'music_error', message: '请输入搜索关键词' });
-    return;
-  }
-  try {
-    const results = await searchNetease(q);
-    sendJson(player.ws, { type: 'music_netease_results', results });
-  } catch (err) {
-    sendJson(player.ws, { type: 'music_error', message: err.message || '网易云搜索失败' });
-  }
-}
-
-async function handleNeteaseRequest(room, player, msg) {
-  const songId = String(msg.songId || '').trim();
-  if (!/^\d+$/.test(songId)) {
-    sendJson(player.ws, { type: 'music_error', message: '歌曲 ID 不正确' });
-    return;
-  }
-  const queueError = validateMusicQueue(room);
-  if (queueError) {
-    sendJson(player.ws, { type: 'music_error', message: queueError });
-    return;
-  }
-  const key = neteaseKey(songId);
-  if (room.musicDownloads.has(key)) {
-    sendJson(player.ws, { type: 'music_error', message: '这首歌正在下载中，请稍候' });
-    return;
-  }
-
-  const cached = musicCache.get(key);
-  if (cached && existsSync(cached.path)) {
-    const expectedSec = Number(msg.duration) || Number(cached.duration) || 0;
-    const validation = await validateNeteaseCachedEntry(songId, cached, expectedSec);
-    if (validation.ok) {
-      let lyric = cached.lyric || '';
-      if (!lyric) {
-        try {
-          lyric = await resolveNeteaseLyric(songId);
-          cached.lyric = lyric;
-        } catch {
-          // 没有歌词不阻塞点歌
-        }
-      }
-      const info = {
-        title: cached.title || msg.title,
-        artist: cached.uploader || msg.artist,
-        duration: cached.duration || Number(msg.duration) || 0,
-        cover: cached.thumbnail || msg.cover,
-        lyric,
-      };
-      queueNeteaseSong(room, player, songId, info);
-      return;
-    }
-    // 缓存里是旧版误存的试听且未开启允许试听：删掉后走完整下载流程
-  }
-
-  room.musicDownloads.set(key, true);
-  sendJson(player.ws, { type: 'music_download_start', songId, message: '开始下载，请稍候…' });
-  try {
-    const info = {
-      title: String(msg.title || '未知歌曲').slice(0, 80),
-      artist: String(msg.artist || '').slice(0, 40),
-      duration: Number(msg.duration) || 0,
-      cover: msg.cover || '',
-    };
-    await downloadNeteaseAudio(songId, info);
-    let lyric = '';
-    try {
-      lyric = await resolveNeteaseLyric(songId);
-      const cacheEntry = musicCache.get(key);
-      if (cacheEntry) cacheEntry.lyric = lyric;
-    } catch {
-      // 没有歌词不阻塞点歌
-    }
-    info.lyric = lyric;
-    queueNeteaseSong(room, player, songId, info);
-  } catch (err) {
-    sendJson(player.ws, { type: 'music_error', message: err.message || '点歌失败' });
-  } finally {
-    room.musicDownloads.delete(key);
-  }
 }
 
 // ---------- GD音乐台：独立 API 解析源（含歌词） ----------
@@ -1469,7 +1148,7 @@ async function downloadGdAudio(songId, info) {
   ensureMusicCacheDir();
   const key = gdKey(songId);
   const item = await resolveGdMusicUrl(info.urlId || songId);
-  const result = await fetchNeteaseAudio(songId, info, item.url, item.meta, {
+  const result = await fetchRemoteAudio(songId, info, item.url, item.meta, {
     cacheKey: key,
     headers: {
       'User-Agent': 'Mozilla/5.0',
@@ -4293,12 +3972,6 @@ wss.on('connection', (ws, req) => {
         break;
       case 'skip_vote':
         handleSkipVote(room, player);
-        break;
-      case 'music_netease_search':
-        handleNeteaseSearch(room, player, msg);
-        break;
-      case 'music_netease_request':
-        handleNeteaseRequest(room, player, msg);
         break;
       case 'music_gd_search':
         handleGdSearch(room, player, msg);

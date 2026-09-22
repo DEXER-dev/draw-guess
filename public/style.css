@@ -2347,31 +2347,22 @@ input:focus, select:focus { border-color: var(--primary); }
   color: #fff;
   font-weight: 700;
 }
-.netease-point,
 .gd-point {
   background: var(--card);
   border: 1px solid var(--line);
   border-radius: 10px;
   padding: 10px;
 }
-.netease-point-title,
 .gd-point-title { font-size: 13px; font-weight: 700; margin-bottom: 6px; }
-.netease-input-row,
 .gd-input-row { display: flex; gap: 6px; }
-.netease-input-row input,
 .gd-input-row input { flex: 1; min-width: 0; }
-.netease-results,
 .gd-results { margin-top: 8px; display: flex; flex-direction: column; gap: 6px; }
-.netease-result-item,
 .gd-result-item {
   border-top: 1px dashed var(--line);
   padding-top: 8px;
 }
-.netease-result-title,
 .gd-result-title { font-weight: 700; font-size: 14px; word-break: break-word; }
-.netease-result-meta,
 .gd-result-meta { color: var(--muted); font-size: 12px; margin: 4px 0; }
-.netease-result-actions,
 .gd-result-actions { display: flex; gap: 6px; }
 .bili-point {
   background: var(--card);

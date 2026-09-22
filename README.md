@@ -16,7 +16,7 @@
 - 传说笔皮肤、抽卡和全房间获得提示
 - 聊天弹幕、鲜花、蔬菜和其他轻量互动
 - 回合回放、结算排行榜和最终画廊
-- 可选点歌队列：网易云、GD 音乐台和 B 站 BV 号
+- 可选点歌队列：GD 音乐台和 B 站 BV 号
 
 ## 环境要求（源码运行）
 
@@ -118,15 +118,13 @@ npm run audit:words
 | `PORT` | `3000` | HTTP 和 WebSocket 端口 |
 | `PUBLIC_BASE_URL` | 自动识别 | 二维码和分享链接使用的固定地址 |
 | `LAN_HOST` | 自动探测 | 主机局域网地址 |
-| `MUSIC_API_BASE` | `http://127.0.0.1:3001` | 网易云 API 地址 |
 | `MUSIC_GD_MUSIC_ENABLED` | `1` | 是否启用 GD 音乐台 |
 | `BILI_MAX_DURATION` | `600` | B 站视频最长允许时长，单位为秒 |
 | `FFMPEG_PATH` | 自动查找 | `ffmpeg.exe` 和 `ffprobe.exe` 所在目录 |
 
-网易云 Cookie、B 站 Cookie、代理地址和其他凭据只能通过环境变量提供，例如：
+B 站 Cookie、代理地址和其他凭据只能通过环境变量提供，例如：
 
 `powershell
-$env:MUSIC_NETEASE_COOKIE = "MUSIC_U=你的值"
 $env:BILI_COOKIE = "你的值"
 npm start
 `

@@ -124,7 +124,7 @@ $ProductName $Version · Windows 完整发布版
 服务启动后，启动器中的“打开游戏页面”会打开本机页面；同一 Wi-Fi 下的朋友可以访问显示的局域网地址。
 
 运行日志和点歌缓存：%LOCALAPPDATA%\速成你画我猜
-源码项目仍然支持通过环境变量配置公网地址、网易云 Cookie 等高级选项；发布包不包含任何个人凭据。
+源码项目仍然支持通过环境变量配置公网地址、B 站 Cookie 等高级选项；发布包不包含任何个人凭据。
 "@
 $releaseNotes | Set-Content -LiteralPath (Join-Path $PayloadDir '发布版说明.txt') -Encoding UTF8
 

@@ -18,7 +18,7 @@ const replacements = [
   ['Math.max(30, Number(msg.drawSeconds)', 'Math.max(5, Number(msg.drawSeconds)'],
   ['Math.max(15, Number(msg.guessSeconds)', 'Math.max(5, Number(msg.guessSeconds)'],
   ["const PUBLIC_DIR = path.join(__dirname, 'public');", "const PUBLIC_DIR = path.join(__dirname, '..', '..', 'public');"],
-  ["const MUSIC_CACHE_DIR = path.join(__dirname, 'cache', 'music');", "const MUSIC_CACHE_DIR = path.join(__dirname, '..', '..', 'cache', 'music');"],
+  ["const APP_DATA_DIR = path.resolve(process.env.DRAW_GUESS_DATA_DIR || path.join(__dirname, 'cache'));", "const APP_DATA_DIR = path.resolve(process.env.DRAW_GUESS_DATA_DIR || path.join(__dirname, '..', '..', 'cache'));"],
   ["from './words.js'", "from '../../words.js'"],
   ["from './word-packs.js'", "from '../../word-packs.js'"],
 ];
