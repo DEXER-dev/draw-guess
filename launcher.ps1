@@ -4,9 +4,21 @@
 
 $ErrorActionPreference = 'Stop'
 $Root = Split-Path -Parent $MyInvocation.MyCommand.Path
-$PidFile = Join-Path $Root '.game-server.pid.json'
-$OutputLog = Join-Path $Root 'server-launcher.log'
-$ErrorLog = Join-Path $Root 'server-launcher-error.log'
+$DefaultDataRoot = if ($env:LOCALAPPDATA) { Join-Path $env:LOCALAPPDATA '速成你画我猜' } else { Join-Path $Root 'cache' }
+$DataRoot = if ($env:DRAW_GUESS_DATA_DIR) { $env:DRAW_GUESS_DATA_DIR } else { $DefaultDataRoot }
+New-Item -ItemType Directory -Path $DataRoot -Force | Out-Null
+$PidFile = Join-Path $DataRoot '.game-server.pid.json'
+$OutputLog = Join-Path $DataRoot 'server-launcher.log'
+$ErrorLog = Join-Path $DataRoot 'server-launcher-error.log'
+$RuntimeNode = Join-Path $Root 'runtime\node.exe'
+$BundledToolDir = Join-Path $Root 'runtime\tools'
+
+function Get-NodePath {
+  if (Test-Path -LiteralPath $RuntimeNode) { return $RuntimeNode }
+  $node = Get-Command node.exe -ErrorAction SilentlyContinue
+  if ($node) { return $node.Source }
+  throw '未找到内置 Node.js 运行时。请重新安装完整发布包。'
+}
 
 function Read-LauncherState {
   if (-not (Test-Path -LiteralPath $PidFile)) { return $null }
@@ -64,15 +76,31 @@ function Start-GameServer([int]$Port) {
   if ($existing) { return $existing }
   if (Test-PortUsed $Port) { throw "端口 $Port 已被其他程序占用，请选择其他端口。" }
 
+  $nodePath = Get-NodePath
   $oldPort = $env:PORT
+  $oldDataDir = $env:DRAW_GUESS_DATA_DIR
+  $oldFfmpegPath = $env:FFMPEG_PATH
+  $oldPath = $env:PATH
   try {
     $env:PORT = [string]$Port
-    $process = Start-Process -FilePath 'node.exe' -ArgumentList @('server.js') `
+    $env:DRAW_GUESS_DATA_DIR = $DataRoot
+    if (Test-Path -LiteralPath (Join-Path $BundledToolDir 'ffmpeg.exe')) {
+      $env:FFMPEG_PATH = $BundledToolDir
+    }
+    if (Test-Path -LiteralPath $BundledToolDir) {
+      $env:PATH = "$BundledToolDir$([IO.Path]::PathSeparator)$oldPath"
+    }
+    $process = Start-Process -FilePath $nodePath -ArgumentList @('server.js') `
       -WorkingDirectory $Root -WindowStyle Hidden -PassThru `
       -RedirectStandardOutput $OutputLog -RedirectStandardError $ErrorLog
   } finally {
     if ($null -eq $oldPort) { Remove-Item Env:PORT -ErrorAction SilentlyContinue }
     else { $env:PORT = $oldPort }
+    if ($null -eq $oldDataDir) { Remove-Item Env:DRAW_GUESS_DATA_DIR -ErrorAction SilentlyContinue }
+    else { $env:DRAW_GUESS_DATA_DIR = $oldDataDir }
+    if ($null -eq $oldFfmpegPath) { Remove-Item Env:FFMPEG_PATH -ErrorAction SilentlyContinue }
+    else { $env:FFMPEG_PATH = $oldFfmpegPath }
+    $env:PATH = $oldPath
   }
   Save-LauncherState $process.Id $Port
   Start-Sleep -Milliseconds 350

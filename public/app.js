@@ -2994,6 +2994,16 @@
     setTimeout(() => el.remove(), 3200);
   }
 
+  const lastToastAt = new Map();
+
+  // 同一类提示在窗口内只弹一次：画手跨过回合切换时每个画笔包都会带一条拒绝，逐条弹窗会盖住画面
+  function toastOnce(key, text, type = '', windowMs = 3000) {
+    const now = Date.now();
+    if (now - (lastToastAt.get(key) || 0) < windowMs) return;
+    lastToastAt.set(key, now);
+    toast(text, type);
+  }
+
   function showScreen(name) {
     $('#screen-home').classList.toggle('hidden', name !== 'home');
     $('#screen-lobby').classList.toggle('hidden', name !== 'lobby');
@@ -3951,6 +3961,21 @@
     })[ch]);
   }
 
+  // 缩略图只通过 src 属性赋值：把整串 base64 拼进 innerHTML 等于绕过了所有转义约定
+  function thumbnailNode(value) {
+    const image = String(value || '');
+    if (/^data:image\/(jpeg|png|webp);base64,/i.test(image)) {
+      const img = document.createElement('img');
+      img.alt = '画作';
+      img.src = image;
+      return img;
+    }
+    const empty = document.createElement('div');
+    empty.className = 'gallery-noimg';
+    empty.textContent = '无缩略图';
+    return empty;
+  }
+
   function cloneReplayStrokes() {
     return board.strokes.flatMap((s) => {
       if (s.kind === 'fill') {
@@ -4766,7 +4791,16 @@
     for (const item of awardItems) {
       const card = document.createElement('div');
       card.className = 'award-card';
-      card.innerHTML = `<div class="award-icon">${item.icon}</div><div class="award-label">${item.label}</div><div class="award-text">${item.text}</div>`;
+      const icon = document.createElement('div');
+      icon.className = 'award-icon';
+      icon.textContent = item.icon;
+      const label = document.createElement('div');
+      label.className = 'award-label';
+      label.textContent = item.label;
+      const text = document.createElement('div');
+      text.className = 'award-text';
+      text.textContent = item.text;
+      card.append(icon, label, text);
       awardsBox.appendChild(card);
     }
     wrap.appendChild(awardsBox);
@@ -4787,12 +4821,9 @@
       rank.textContent = `#${index + 1}`;
       const badges = awardBadgesFor(item.id, awards);
       const badgeText = badges.length ? `<div class="gallery-badges">${badges.join(' ')}</div>` : '';
-      const thumb = item.thumbnail
-        ? `<img src="${item.thumbnail}" alt="画作">`
-        : '<div class="gallery-noimg">无缩略图</div>';
       card.innerHTML = `
         ${rank.outerHTML}
-        <div class="gallery-thumb">${thumb}</div>
+        <div class="gallery-thumb"></div>
         <div class="gallery-meta">
           <div class="gallery-title">第${item.round}轮 · ${escapeHtml(item.word)}</div>
           <div class="gallery-sub">🎨 ${escapeHtml(item.drawerNickname)}</div>
@@ -4800,6 +4831,7 @@
           <div class="gallery-stats">🌸 ${item.flowerCount} · 🥦 ${item.vegCount}</div>
           <div class="gallery-fast">${item.fastestGuessMs != null ? `⚡ 最快 ${formatElapsed(item.fastestGuessMs)}` : '无人猜中'}</div>
         </div>`;
+      card.querySelector('.gallery-thumb').appendChild(thumbnailNode(item.thumbnail));
       grid.appendChild(card);
     });
     wrap.appendChild(grid);
@@ -5307,7 +5339,7 @@
       case 'relay_reveal':
         awardPenStardust(
           1,
-          `${state.roomCode}:relay:${(msg.books || []).map((book) => book.id ?? book.originalWord ?? '').join(',')}`,
+          `${state.roomCode}:relay:${msg.gameSeq ?? 0}`,
           '完成一次传画接龙',
         );
         showRelayReveal(msg);
@@ -5322,7 +5354,7 @@
         if (msg.reason !== 'rejoined') {
           awardPenStardust(
             1,
-            `${state.roomCode}:round:${msg.artworkId || `${msg.round}-${msg.turnInRound}`}`,
+            `${state.roomCode}:g${msg.gameSeq ?? 0}:round:${msg.artworkId || `${msg.round}-${msg.turnInRound}`}`,
             '完成一幅作品',
           );
         }
@@ -5355,11 +5387,9 @@
 
       case 'game_over': {
         state.phase = 'finished';
-        const gameKey = (msg.gallery || []).map((item) => item.id || `${item.round}-${item.turnInRound}-${item.word}`).join(',')
-          || (msg.scores || []).map((item) => `${item.id || item.nickname}:${item.score}`).join('|');
         awardPenStardust(
           2,
-          `${state.roomCode}:game:${gameKey}`,
+          `${state.roomCode}:game:${msg.gameSeq ?? 0}`,
           '完成整局游戏',
         );
         updateGameUI();
@@ -5434,7 +5464,7 @@
           toast(msg.message || '身份验证失败', 'error');
           resetToHome({ clearCredentials: true });
         } else {
-          toast(msg.message || '操作失败', 'error');
+          toastOnce(`error:${msg.code || msg.message}`, msg.message || '操作失败', 'error');
         }
         break;
 
