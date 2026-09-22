@@ -158,7 +158,10 @@ if (-not $SkipInstaller) {
 
 Write-Step '生成 SHA-256 校验文件'
 $artifacts = Get-ChildItem -LiteralPath $ReleaseDir -File | Where-Object {
-  $_.Name -like "$ProductName-$Version-*" -and $_.Extension -in @('.zip', '.exe')
+  $_.Extension -in @('.zip', '.exe') -and (
+    $_.Name -like "$ProductName-$Version-*" -or
+    $_.Name -eq "$ProductName-Setup-$Version.exe"
+  )
 }
 $hashLines = foreach ($artifact in $artifacts) {
   $hash = (Get-FileHash -LiteralPath $artifact.FullName -Algorithm SHA256).Hash.ToLowerInvariant()
